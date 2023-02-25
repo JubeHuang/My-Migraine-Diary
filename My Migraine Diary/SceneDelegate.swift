@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FacebookCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,6 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let statusController: RecordStatusTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(RecordStatusTableViewController.self)") as! RecordStatusTableViewController
+        let recordListController =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(RecordListTableViewController.self)") as!  RecordListTableViewController
+        statusController.container = appDelegate?.persistentContainer
+        recordListController.container = appDelegate?.persistentContainer
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -45,6 +51,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else {
+            return
+        }
+        ApplicationDelegate.shared.application(UIApplication.shared, open: url, sourceApplication: nil, annotation: [UIApplication.OpenURLOptionsKey.annotation])
     }
 
 
