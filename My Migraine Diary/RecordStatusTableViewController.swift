@@ -10,18 +10,26 @@ import CoreData
 
 class RecordStatusTableViewController: UITableViewController {
     
-    //var records = [Record]()
+    @IBOutlet weak var medCell: StatusBtnTableViewCell!
+    @IBOutlet weak var placeCell: StatusBtnTableViewCell!
+    @IBOutlet weak var causeCell: StatusBtnTableViewCell!
+    @IBOutlet weak var signCell: StatusBtnTableViewCell!
+    @IBOutlet weak var symptomCell: StatusBtnTableViewCell!
     var container: NSPersistentContainer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //view.bgGradient(view: view.self)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        symptomCell.configBtns(num: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map{"\($0.rawValue)"})
+        signCell.configBtns(num: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map{"\($0.rawValue)"})
+        causeCell.configBtns(num: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map{"\($0.rawValue)"})
+        placeCell.configBtns(num: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map{"\($0.rawValue)"})
+        medCell.configBtns(num: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map{"\($0.rawValue)"})
     }
     
     func save(start: Date, end: Date?, location: String?, score: Int, symptom: String?, sign: String?, cause: String?, place: String?, med: String?, medEffect: String?, medQuantity: Double?, note: String?) {

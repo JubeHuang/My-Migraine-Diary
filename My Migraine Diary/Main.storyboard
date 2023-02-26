@@ -520,6 +520,161 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="113" id="Kmf-Kl-RyH" customClass="StatusBtnTableViewCell" customModule="My_Migraine_Diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="370" width="393" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kmf-Kl-RyH" id="qxQ-Bl-g2J">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="伴隨症狀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNd-Rs-ZYr">
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="65.333333333333329" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIw-L6-nYg">
+                                                    <rect key="frame" x="16" y="112" width="361" height="1"/>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="Jfg-jZ-Mxn"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.16078431369999999" green="0.20784313730000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="bNd-Rs-ZYr" firstAttribute="top" secondItem="qxQ-Bl-g2J" secondAttribute="top" constant="16" id="KlV-Mr-sca"/>
+                                                <constraint firstItem="eIw-L6-nYg" firstAttribute="leading" secondItem="qxQ-Bl-g2J" secondAttribute="leading" constant="16" id="OwW-JS-Lz7"/>
+                                                <constraint firstAttribute="trailing" secondItem="eIw-L6-nYg" secondAttribute="trailing" constant="16" id="TUQ-2e-NTq"/>
+                                                <constraint firstAttribute="bottom" secondItem="eIw-L6-nYg" secondAttribute="bottom" id="hxe-CX-hv3"/>
+                                                <constraint firstItem="bNd-Rs-ZYr" firstAttribute="leading" secondItem="qxQ-Bl-g2J" secondAttribute="leading" constant="16" id="rGC-cs-97S"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="113" id="t5U-gS-S4u" customClass="StatusBtnTableViewCell" customModule="My_Migraine_Diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="483" width="393" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t5U-gS-S4u" id="Wea-C1-hV4">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="頭痛預兆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0k-nj-96D">
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="65.333333333333329" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dur-7q-IZ1">
+                                                    <rect key="frame" x="16" y="112" width="361" height="1"/>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="BnG-hf-o3M"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.16078431369999999" green="0.20784313730000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Dur-7q-IZ1" firstAttribute="leading" secondItem="Wea-C1-hV4" secondAttribute="leading" constant="16" id="0RH-HE-qZf"/>
+                                                <constraint firstAttribute="bottom" secondItem="Dur-7q-IZ1" secondAttribute="bottom" id="5cN-L5-TqD"/>
+                                                <constraint firstItem="L0k-nj-96D" firstAttribute="top" secondItem="Wea-C1-hV4" secondAttribute="top" constant="16" id="Juv-hQ-oQA"/>
+                                                <constraint firstItem="L0k-nj-96D" firstAttribute="leading" secondItem="Wea-C1-hV4" secondAttribute="leading" constant="16" id="L06-fE-zIf"/>
+                                                <constraint firstAttribute="trailing" secondItem="Dur-7q-IZ1" secondAttribute="trailing" constant="16" id="xTv-re-mBC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="113" id="74B-ub-YUe" customClass="StatusBtnTableViewCell" customModule="My_Migraine_Diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="596" width="393" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="74B-ub-YUe" id="mXp-c5-CsW">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="誘發因素" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9M-sz-8Ph">
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="65.333333333333329" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-9L-ja7">
+                                                    <rect key="frame" x="16" y="112" width="361" height="1"/>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="5kg-pB-2TJ"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.16078431369999999" green="0.20784313730000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="o9M-sz-8Ph" firstAttribute="top" secondItem="mXp-c5-CsW" secondAttribute="top" constant="16" id="JqY-1J-9NV"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Qx-9L-ja7" secondAttribute="bottom" id="MzG-zp-NrH"/>
+                                                <constraint firstItem="o9M-sz-8Ph" firstAttribute="leading" secondItem="mXp-c5-CsW" secondAttribute="leading" constant="16" id="oMG-Ks-P88"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Qx-9L-ja7" secondAttribute="trailing" constant="16" id="rs5-6m-uQl"/>
+                                                <constraint firstItem="1Qx-9L-ja7" firstAttribute="leading" secondItem="mXp-c5-CsW" secondAttribute="leading" constant="16" id="xZz-sc-YYO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="113" id="fb2-PW-8g0" customClass="StatusBtnTableViewCell" customModule="My_Migraine_Diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="709" width="393" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fb2-PW-8g0" id="qpg-kL-WIG">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="發生地點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lA8-tX-E1z">
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="65.333333333333329" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6S7-t8-cQM">
+                                                    <rect key="frame" x="16" y="112" width="361" height="1"/>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="tHr-WV-skA"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.16078431369999999" green="0.20784313730000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="6S7-t8-cQM" firstAttribute="leading" secondItem="qpg-kL-WIG" secondAttribute="leading" constant="16" id="6Sh-Io-cJs"/>
+                                                <constraint firstItem="lA8-tX-E1z" firstAttribute="top" secondItem="qpg-kL-WIG" secondAttribute="top" constant="16" id="AF7-63-oPv"/>
+                                                <constraint firstAttribute="bottom" secondItem="6S7-t8-cQM" secondAttribute="bottom" id="DYL-GW-ICq"/>
+                                                <constraint firstAttribute="trailing" secondItem="6S7-t8-cQM" secondAttribute="trailing" constant="16" id="Mbt-hi-HbM"/>
+                                                <constraint firstItem="lA8-tX-E1z" firstAttribute="leading" secondItem="qpg-kL-WIG" secondAttribute="leading" constant="16" id="w0c-sD-3vU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="113" id="Cpa-GQ-bPG" customClass="StatusBtnTableViewCell" customModule="My_Migraine_Diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="822" width="393" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cpa-GQ-bPG" id="VR8-Qc-3rA">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服用藥物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4V-bg-oEh">
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="65.333333333333329" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpp-aH-5x2">
+                                                    <rect key="frame" x="16" y="112" width="361" height="1"/>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="aLV-oG-ls1"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.16078431369999999" green="0.20784313730000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="R4V-bg-oEh" firstAttribute="leading" secondItem="VR8-Qc-3rA" secondAttribute="leading" constant="16" id="0Aj-qQ-Alr"/>
+                                                <constraint firstItem="R4V-bg-oEh" firstAttribute="top" secondItem="VR8-Qc-3rA" secondAttribute="top" constant="16" id="8zs-Dy-nDM"/>
+                                                <constraint firstItem="zpp-aH-5x2" firstAttribute="leading" secondItem="VR8-Qc-3rA" secondAttribute="leading" constant="16" id="Uzf-Od-o32"/>
+                                                <constraint firstAttribute="bottom" secondItem="zpp-aH-5x2" secondAttribute="bottom" id="YcJ-v8-su5"/>
+                                                <constraint firstAttribute="trailing" secondItem="zpp-aH-5x2" secondAttribute="trailing" constant="16" id="icx-bU-47f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -529,6 +684,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="EXY-FF-qCs"/>
+                    <connections>
+                        <outlet property="causeCell" destination="74B-ub-YUe" id="djh-BL-7SU"/>
+                        <outlet property="medCell" destination="Cpa-GQ-bPG" id="FMS-RJ-pxm"/>
+                        <outlet property="placeCell" destination="fb2-PW-8g0" id="BlG-fj-owl"/>
+                        <outlet property="signCell" destination="t5U-gS-S4u" id="agQ-Ep-8zJ"/>
+                        <outlet property="symptomCell" destination="Kmf-Kl-RyH" id="NyT-UM-vdc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBX-op-vkn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="dwd-az-A19">
@@ -800,10 +962,10 @@
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="bluishGrey">
-            <color red="0.32900000000000001" green="0.41499999999999998" blue="0.46999999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.32899999618530273" green="0.41499999165534973" blue="0.4699999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightBlu">
-            <color red="0.85399999999999998" green="0.90900000000000003" blue="0.94899999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.85399997234344482" green="0.9089999794960022" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="pink">
             <color red="0.94900000095367432" green="0.66200000047683716" blue="0.48600000143051147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

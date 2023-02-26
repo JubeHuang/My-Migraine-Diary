@@ -10,6 +10,7 @@
 		8D027B7029AA0A740058FD32 /* View Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B6F29AA0A740058FD32 /* View Extension.swift */; };
 		8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */; };
 		8D027B7429AA1ED90058FD32 /* StatusBtnScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D027B7329AA1ED90058FD32 /* StatusBtnScrollView.xib */; };
+		8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */; };
 		8D51329D29A8A06E002DDB22 /* Record.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D51329B29A8A06E002DDB22 /* Record.xcdatamodeld */; };
 		8D5132A229A8D4DF002DDB22 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */; };
 		8D5132A429A8D5C7002DDB22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5132A329A8D5C7002DDB22 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		8D027B6F29AA0A740058FD32 /* View Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View Extension.swift"; sourceTree = "<group>"; };
 		8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
 		8D027B7329AA1ED90058FD32 /* StatusBtnScrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusBtnScrollView.xib; sourceTree = "<group>"; };
+		8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBtnTableViewCell.swift; sourceTree = "<group>"; };
 		8D51329C29A8A06E002DDB22 /* Record.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Record.xcdatamodel; sourceTree = "<group>"; };
 		8D5132A129A8D4DF002DDB22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "My Migraine Diary/Base.lproj/LogIn.storyboard"; sourceTree = "<group>"; };
 		8D5132A329A8D5C7002DDB22 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -76,8 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				8D027B7329AA1ED90058FD32 /* StatusBtnScrollView.xib */,
-				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
-				8D027B6F29AA0A740058FD32 /* View Extension.swift */,
+				8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */,
 				8D779FC629A4A4CC00894357 /* My Migraine Diary */,
 				8D779FC529A4A4CC00894357 /* Products */,
 			);
@@ -94,6 +95,8 @@
 		8D779FC629A4A4CC00894357 /* My Migraine Diary */ = {
 			isa = PBXGroup;
 			children = (
+				8D027B6F29AA0A740058FD32 /* View Extension.swift */,
+				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
 				8D5132B329A905B9002DDB22 /* RecordListTableViewController.swift */,
 				8D5132AF29A8FB69002DDB22 /* RecordStatusTableViewController.swift */,
 				8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */,
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */,
 				8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */,
 				8D027B7029AA0A740058FD32 /* View Extension.swift in Sources */,
 				8D5132B429A905B9002DDB22 /* RecordListTableViewController.swift in Sources */,
