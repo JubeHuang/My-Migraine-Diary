@@ -18,9 +18,10 @@ class StatusBtnTableViewCell: UITableViewCell {
     
     func configBtns(num: Int, view: UIView, title: [String]){
         // 設定每個UIButton的大小和間距
-        let buttonWidth = 80
-        let buttonHeight = 44
-        let spacing = 0
+        let buttonWidth = 74
+        let buttonHeight = 60
+        let spacing = 4
+        let viewH = 100
 
         // 要生成的UIButton數量
         let buttonCount = num
@@ -35,21 +36,31 @@ class StatusBtnTableViewCell: UITableViewCell {
         configuration.imagePadding = 6
         
         let y = 52
-
+        
+        // 建立scrollView
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: y, width: 375, height: viewH))
+        let totalBtnsWidth = (buttonWidth + spacing) * num
+        scrollView.contentSize = CGSize(width: totalBtnsWidth, height: viewH)
+        scrollView.showsHorizontalScrollIndicator = false
+        
         // 生成指定數量的UIButton
         for i in 0..<buttonCount {
             // 計算UIButton的x和y座標
-            let x = i * (buttonWidth + spacing)
+            let x = i * buttonWidth
             
             // 建立文字
-            var attrStr = AttributedString("\(title[i])")
-            attrStr.font = .systemFont(ofSize: 12)
-            attrStr.foregroundColor = UIColor(named: "lightBlu")
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.alignment = .center
+            let attrStr = NSAttributedString(string: "\(title[i])", attributes: [
+                .font: UIFont.systemFont(ofSize: 12),
+                .foregroundColor: UIColor(named: "lightBlu")!,
+                .paragraphStyle: paragraph
+            ])
             
             // 建立新的UIButton
             let button = UIButton(configuration: configuration)
-            button.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
-            button.setAttributedTitle(NSAttributedString(attrStr), for: .normal)
+            button.frame = CGRect(x: x, y: 0, width: buttonWidth, height: buttonHeight)
+            button.setAttributedTitle(attrStr, for: .normal)
             
             //點擊Btn後要做的事
             button.addTarget(self, action: #selector(buttonSelected(sender:)), for: .touchUpInside)
@@ -57,11 +68,20 @@ class StatusBtnTableViewCell: UITableViewCell {
             // 將新的UIButton加入陣列中
             buttons.append(button)
         }
-
-        // 顯示生成的UIButton
+        
+        // 建立stackView
+        let stackV = UIStackView(frame: CGRect(x: 0, y: 0, width: totalBtnsWidth, height: viewH))
+        stackV.axis = .horizontal
+        stackV.alignment = .top
+        stackV.distribution = .fillEqually
+        stackV.spacing = CGFloat(spacing)
+        
         for button in buttons {
-            view.addSubview(button)
+            stackV.addArrangedSubview(button)
         }
+        
+        scrollView.addSubview(stackV)
+        view.addSubview(scrollView)
     }
     
     @objc func buttonSelected(sender: UIButton) {

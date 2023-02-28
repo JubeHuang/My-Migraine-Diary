@@ -38,6 +38,9 @@ enum Sign: String, CaseIterable {
     case 感覺異常
     case 語言障礙
     case 聽幻覺
+    case other = "其他"
+    case notKnow = "不清楚"
+    case noSelect = "無"
 }
 
 enum Cause: String, CaseIterable {
@@ -52,6 +55,7 @@ enum Cause: String, CaseIterable {
     case noise = "聲音"
     case sleep = "睡眠不足"
     case med = "藥物"
+    case other = "其他"
     case notKnow = "不清楚"
     case noSelect = "無"
 }
@@ -63,6 +67,7 @@ enum Place: String, CaseIterable {
     case transit = "交通中"
     case bed = "床上"
     case out = "戶外"
+    case other = "其他"
     case notKnow = "不清楚"
 }
 
@@ -70,6 +75,7 @@ enum MedEffect: String, CaseIterable {
     case no = "無效果"
     case little = "有點效果"
     case good = "非常有效"
+    case noSelect = "無服用"
 }
 
 enum Med: String, CaseIterable {
@@ -77,4 +83,5 @@ enum Med: String, CaseIterable {
     case 非類固醇消炎止痛藥
     case 麥角胺
     case 翠普登
+    case noSelect = "無服用"
 }

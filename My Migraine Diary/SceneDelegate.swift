@@ -18,11 +18,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let statusController: RecordStatusTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(RecordStatusTableViewController.self)") as! RecordStatusTableViewController
-        let recordListController =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(RecordListTableViewController.self)") as!  RecordListTableViewController
-        statusController.container = appDelegate?.persistentContainer
-        recordListController.container = appDelegate?.persistentContainer
+        
+        let tabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! CustomTabbar
+        if let navControllers = tabBar.viewControllers as? [UINavigationController] {
+            let firstTabVCS = navControllers[0].viewControllers
+            print(firstTabVCS.count)
+            let secondTabVCS = navControllers[1].viewControllers
+            let listVC = secondTabVCS[0] as! RecordListTableViewController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            listVC.container = appDelegate.persistentContainer
+        }
+        window?.rootViewController = tabBar
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

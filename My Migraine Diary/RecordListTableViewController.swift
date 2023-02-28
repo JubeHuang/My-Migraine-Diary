@@ -11,7 +11,7 @@ import CoreData
 class RecordListTableViewController: UITableViewController {
     
     var container: NSPersistentContainer!
-    var records = [Record]()
+    var records = [StatusR]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,11 @@ class RecordListTableViewController: UITableViewController {
     func getRecords(){
         let context = container.viewContext
         do {
-            records = try context.fetch(Record.fetchRequest())
+            records = try context.fetch(StatusR.fetchRequest())
         } catch {
             print("fetch faild")
         }
-        
+
     }
 
     // MARK: - Table view data source
