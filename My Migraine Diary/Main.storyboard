@@ -103,15 +103,15 @@
                                                 <rect key="frame" x="103" y="16" width="224" height="14.333333333333336"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="歷時 3時23分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1A0-QI-EOU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="14.333333333333334"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="98" height="14.333333333333334"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <color key="textColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023/02/22" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQK-Sb-XSy">
-                                                        <rect key="frame" x="144" y="0.0" width="80" height="14.333333333333334"/>
+                                                        <rect key="frame" x="114" y="0.0" width="110" height="14.333333333333334"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="80" id="kLI-hQ-WtM"/>
+                                                            <constraint firstAttribute="width" constant="110" id="kLI-hQ-WtM"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <color key="textColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -267,8 +267,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addBtn" destination="9HT-WM-CLf" id="xyY-Pi-1LJ"/>
+                        <outlet property="causeLabel" destination="1xe-eZ-cnX" id="x2a-Sr-p7q"/>
+                        <outlet property="durationLabel" destination="1A0-QI-EOU" id="NLd-SS-vDM"/>
                         <outlet property="migraineGreetingLabel" destination="sgD-7U-2C6" id="zrR-cc-C0s"/>
+                        <outlet property="placeLabel" destination="Hme-0B-G2B" id="hWt-vF-lYu"/>
+                        <outlet property="scoreLabel" destination="kcn-qx-M8D" id="Zc3-em-DFb"/>
                         <outlet property="scrollView" destination="Mvd-21-kIf" id="kCi-aa-QkQ"/>
+                        <outlet property="startTimeLabel" destination="TQK-Sb-XSy" id="goY-Ih-xKP"/>
+                        <outlet property="symptomLabel" destination="jDE-ER-ChJ" id="7L2-1e-urB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -333,7 +339,18 @@
                                                     <rect key="frame" x="16" y="62" width="343" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="持續頭痛中"/>
+                                                    <state key="normal" title="持續頭痛中">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <buttonConfiguration key="configuration" style="plain" title="持續頭痛中">
+                                                        <backgroundConfiguration key="background" strokeWidth="1">
+                                                            <color key="strokeColor" name="bluishGrey"/>
+                                                        </backgroundConfiguration>
+                                                        <color key="baseForegroundColor" name="bluishGrey"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="tapStillGoing:" destination="hb9-e5-rCE" eventType="touchUpInside" id="UgY-yY-Oba"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="結束時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dl-sw-sHs">
                                                     <rect key="frame" x="16" y="25" width="66" height="20"/>
@@ -872,7 +889,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="EXY-FF-qCs">
-                        <barButtonItem key="rightBarButtonItem" title="儲存" id="gBg-Hr-XDA"/>
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="gBg-Hr-XDA">
+                            <connections>
+                                <action selector="saveStatus:" destination="hb9-e5-rCE" id="dSL-7e-U8T"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="causeCell" destination="74B-ub-YUe" id="djh-BL-7SU"/>
@@ -885,6 +906,7 @@
                         <outlet property="quantityTextfield" destination="tAp-sW-q0V" id="zgB-Wt-LJk"/>
                         <outlet property="signCell" destination="t5U-gS-S4u" id="agQ-Ep-8zJ"/>
                         <outlet property="startTime" destination="6DD-lc-8lV" id="hzk-8l-XP2"/>
+                        <outlet property="stillGoingBtn" destination="PkB-rE-SLM" id="iTf-SJ-1wT"/>
                         <outlet property="symptomCell" destination="Kmf-Kl-RyH" id="NyT-UM-vdc"/>
                         <outletCollection property="scorBtns" destination="hxU-3A-SGv" collectionClass="NSMutableArray" id="Emp-kd-Q0f"/>
                         <outletCollection property="scorBtns" destination="nGw-0g-UlF" collectionClass="NSMutableArray" id="Bsb-Jc-BxG"/>
@@ -1058,30 +1080,174 @@
             </objects>
             <point key="canvasLocation" x="2772" y="2.9556650246305418"/>
         </scene>
-        <!--Record List Table View Controller-->
+        <!--過往頭痛紀錄-->
         <scene sceneID="jw2-gG-5Z2">
             <objects>
                 <tableViewController storyboardIdentifier="RecordListTableViewController" id="V1G-1Z-Aqz" customClass="RecordListTableViewController" customModule="My_Migraine_Diary" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0EW-NF-Y9D">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" id="0EW-NF-Y9D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="BvY-bw-DL8">
+                        <color key="separatorColor" name="bluishGrey"/>
+                        <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="搜尋" id="BvY-bw-DL8">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" name="bluishGrey"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
                                 <outlet property="delegate" destination="V1G-1Z-Aqz" id="79z-bg-d7A"/>
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2T0-BL-K5l">
-                                <rect key="frame" x="0.0" y="94" width="375" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="RecordTableViewCell" rowHeight="111" id="2T0-BL-K5l" customClass="RecordTableViewCell" customModule="My_Migraine_Diary" customModuleProvider="target">
+                                <rect key="frame" x="20" y="99.333332061767578" width="335" height="111"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2T0-BL-K5l" id="d62-Zz-qLi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="111"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Yqb-ZV-UMZ">
+                                            <rect key="frame" x="16" y="16" width="54" height="79"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hj-Sb-Ffz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc2-ek-2OI">
+                                                            <rect key="frame" x="0.0" y="8" width="54" height="38"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="39"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="pink"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="9hj-Sb-Ffz" secondAttribute="height" multiplier="1:1" id="ksy-hS-0yF"/>
+                                                        <constraint firstAttribute="width" constant="54" id="pJv-vW-XlY"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <integer key="value" value="27"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="疼痛指數" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s0-sP-I40">
+                                                    <rect key="frame" x="0.0" y="60" width="54" height="19"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgd-ef-eAc">
+                                            <rect key="frame" x="82" y="16" width="1" height="79"/>
+                                            <color key="backgroundColor" name="bluishGrey"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="1" id="oPE-nv-lzn"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="oCB-uP-F7y">
+                                            <rect key="frame" x="95" y="16" width="224" height="14.333333333333336"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="歷時 3時23分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acG-j4-QO3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="14.333333333333334"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" name="lightBlu"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023/02/22" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hj-oA-eXZ">
+                                                    <rect key="frame" x="114" y="0.0" width="110" height="14.333333333333334"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="110" id="Ugb-KM-VFc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" name="lightBlu"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cn4-S8-aL6">
+                                            <rect key="frame" x="95" y="53.333333333333343" width="224" height="41.666666666666657"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NrF-Ta-4Bd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="74.666666666666671" height="41.666666666666664"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="誘發因素" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldF-vs-G4n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="49.333333333333336" height="14.333333333333334"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歷時" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xS4-Eq-IYj">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="32.666666666666664" height="19.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="669-BY-meI">
+                                                    <rect key="frame" x="74.666666666666657" y="0.0" width="74.666666666666657" height="41.666666666666664"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地點" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxk-c1-fQI">
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.666666666666668" height="14.333333333333334"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歷時" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-HQ-YUT">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="32.666666666666664" height="19.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gFf-Ke-DLU">
+                                                    <rect key="frame" x="149.33333333333334" y="0.0" width="74.666666666666657" height="41.666666666666664"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="症狀" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cY2-iV-Qen">
+                                                            <rect key="frame" x="0.0" y="0.0" width="24.666666666666668" height="14.333333333333334"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歷時" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYd-rw-go3">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="32.666666666666664" height="19.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="mgd-ef-eAc" secondAttribute="bottom" constant="16" id="3fe-ut-Kvw"/>
+                                        <constraint firstAttribute="trailing" secondItem="cn4-S8-aL6" secondAttribute="trailing" constant="16" id="H7l-ab-rke"/>
+                                        <constraint firstItem="oCB-uP-F7y" firstAttribute="top" secondItem="d62-Zz-qLi" secondAttribute="top" constant="16" id="QQV-ay-1yi"/>
+                                        <constraint firstItem="Yqb-ZV-UMZ" firstAttribute="leading" secondItem="d62-Zz-qLi" secondAttribute="leading" constant="16" id="ZA4-Bc-VxZ"/>
+                                        <constraint firstItem="Yqb-ZV-UMZ" firstAttribute="top" secondItem="d62-Zz-qLi" secondAttribute="top" constant="16" id="dzR-vI-AYg"/>
+                                        <constraint firstItem="mgd-ef-eAc" firstAttribute="top" secondItem="d62-Zz-qLi" secondAttribute="top" constant="16" id="knf-wk-8gR"/>
+                                        <constraint firstItem="mgd-ef-eAc" firstAttribute="leading" secondItem="Yqb-ZV-UMZ" secondAttribute="trailing" constant="12" id="mad-ao-OAJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Yqb-ZV-UMZ" secondAttribute="bottom" constant="16" id="mqD-H7-3gi"/>
+                                        <constraint firstItem="oCB-uP-F7y" firstAttribute="leading" secondItem="mgd-ef-eAc" secondAttribute="trailing" constant="12" id="rqQ-Zl-ciU"/>
+                                        <constraint firstItem="cn4-S8-aL6" firstAttribute="leading" secondItem="mgd-ef-eAc" secondAttribute="trailing" constant="12" id="vWB-d1-iU0"/>
+                                        <constraint firstAttribute="trailing" secondItem="oCB-uP-F7y" secondAttribute="trailing" constant="16" id="wY0-1F-SZ7"/>
+                                        <constraint firstAttribute="bottom" secondItem="cn4-S8-aL6" secondAttribute="bottom" constant="16" id="wrt-d2-YkM"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="darkBlu"/>
+                                <connections>
+                                    <outlet property="cause" destination="xS4-Eq-IYj" id="sNW-en-k32"/>
+                                    <outlet property="durationLabel" destination="acG-j4-QO3" id="kYG-NB-QLQ"/>
+                                    <outlet property="placeLabel" destination="JwA-HQ-YUT" id="FQE-1R-S06"/>
+                                    <outlet property="scoreLabel" destination="oc2-ek-2OI" id="lRb-Oi-QT4"/>
+                                    <outlet property="symptumLabel" destination="CYd-rw-go3" id="Nxw-nu-Q0W"/>
+                                    <outlet property="timeLabel" destination="9Hj-oA-eXZ" id="mkx-Nx-M5f"/>
+                                    <segue destination="hb9-e5-rCE" kind="show" identifier="showRecord" id="jmn-lx-OvV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1089,11 +1255,13 @@
                             <outlet property="delegate" destination="V1G-1Z-Aqz" id="cnI-38-Jeg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2vl-lH-E1i"/>
+                    <navigationItem key="navigationItem" title="過往頭痛紀錄" id="2vl-lH-E1i">
+                        <barButtonItem key="backBarButtonItem" title="列表" id="Lfp-E7-s07"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFZ-qA-DhP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886.2595419847328" y="820.4225352112677"/>
+            <point key="canvasLocation" x="1885.5999999999999" y="820.19704433497543"/>
         </scene>
         <!--Custom Tabbar-->
         <scene sceneID="oHd-Ap-bAA">
@@ -1162,6 +1330,9 @@
             <point key="canvasLocation" x="959.5419847328244" y="820.4225352112677"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="wcU-1N-0Si"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="addRecord" width="252" height="252"/>
         <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>

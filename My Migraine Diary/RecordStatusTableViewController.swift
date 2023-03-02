@@ -10,6 +10,7 @@ import CoreData
 
 class RecordStatusTableViewController: UITableViewController {
     
+    @IBOutlet weak var stillGoingBtn: UIButton!
     @IBOutlet weak var note: UITextView!
     @IBOutlet weak var endTime: UIDatePicker!
     @IBOutlet weak var startTime: UIDatePicker!
@@ -23,7 +24,6 @@ class RecordStatusTableViewController: UITableViewController {
     @IBOutlet weak var symptomCell: StatusBtnTableViewCell!
     @IBOutlet weak var effectCell: StatusBtnTableViewCell!
     
-    var container: NSPersistentContainer!
     var score = 0
     var records = [StatusR]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -39,6 +39,21 @@ class RecordStatusTableViewController: UITableViewController {
         updateUI()
     }
     
+    @IBAction func tapStillGoing(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            sender.configuration?.background.backgroundColor = UIColor(named: "bluishGrey")
+            sender.configuration?.baseForegroundColor = .white
+            endTime.isEnabled = false
+            endTime.alpha = 0.2
+        } else {
+            sender.configuration?.background.backgroundColor = .clear
+            sender.configuration?.baseForegroundColor = UIColor(named: "bluishGrey")
+            endTime.isEnabled = true
+            endTime.alpha = 1
+        }
+    }
+    
     @IBAction func tapScore(_ sender: UIButton) {
         if let index = scorBtns.firstIndex(of: sender) {
             score = index + 1
@@ -50,22 +65,29 @@ class RecordStatusTableViewController: UITableViewController {
     }
     
     @IBAction func saveStatus(_ sender: Any) {
+        
         let start = startTime.date
-        let end = endTime.date
+        
+        var end = endTime.date
+        if stillGoingBtn.isSelected {
+            end = startTime.date
+        }
+        
         let location = RecordStatusWording.noSelect.rawValue
         let place = RecordStatusWording.noSelect.rawValue
         let med = medCell.selectStrs.first ?? RecordStatusWording.noSelect.rawValue
         let effect = effectCell.selectStrs.first ?? RecordStatusWording.noSelect.rawValue
         let note = note.text
-        if let text = quantityTextfield.text, text != "" {
-            //let quantity = Double(text)
-            save(start: start, end: end, location: location, score: score, symptom: symptomCell.selectStrs, sign: signCell.selectStrs, cause: causeCell.selectStrs, place: place, med: med, medEffect: effect, medQuantity: 1.0, note: note)
+        let quantityText = quantityTextfield.text!
+        let quantity = Double(quantityText)
+        
+        if endTime.date <= startTime.date, !stillGoingBtn.isSelected {
+            alert(title: "時間錯誤", message: "結束時間需比開始時間晚噢！", action: "OK")
         } else {
-            save(start: start, end: end, location: location, score: score, symptom: symptomCell.selectStrs, sign: signCell.selectStrs, cause: causeCell.selectStrs, place: place, med: med, medEffect: effect, medQuantity: 0.0, note: note)
+            save(start: start, end: end, location: location, score: score, symptom: symptomCell.selectStrs, sign: signCell.selectStrs, cause: causeCell.selectStrs, place: place, med: med, medEffect: effect, medQuantity: quantity, note: note)
         }
-        getRecords()
-        print( records )
-        navigationController?.pushViewController(self, animated: true)
+        
+        navigationController?.popViewController(animated: true)
     }
     
     
@@ -76,28 +98,18 @@ class RecordStatusTableViewController: UITableViewController {
         let record = StatusR(context: context)
         record.startTime = start
         record.endTime = end
-        record.location = location ?? ""
+        record.location = location ?? RecordStatusWording.noSelect.rawValue
         record.score = Int16(score)
         record.symptom = symptom.first ?? RecordStatusWording.noSelect.rawValue
         record.cause = cause.first ?? RecordStatusWording.noSelect.rawValue
         record.sign = sign.first ?? RecordStatusWording.noSelect.rawValue
-        record.place = place ?? ""
-        record.med = med ?? ""
+        record.place = place ?? RecordStatusWording.noSelect.rawValue
+        record.med = med ?? Med.allCases.last?.rawValue
         record.medEffect = medEffect ?? ""
         record.medQuantity = medQuantity ?? 0.0
         record.note = note ?? ""
         
         appDelegate.persistentContainer.saveContext()
-    }
-    
-    func getRecords(){
-        let context = container.viewContext
-        do {
-            records = try context.fetch(StatusR.fetchRequest())
-        } catch {
-            print("fetch faild")
-        }
-        
     }
     
     func updateUI(){
@@ -107,6 +119,13 @@ class RecordStatusTableViewController: UITableViewController {
         placeCell.configBtns(num: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map{"\($0.rawValue)"})
         medCell.configBtns(num: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map{"\($0.rawValue)"})
         effectCell.configBtns(num: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map{"\($0.rawValue)"})
+    }
+    
+    func alert(title: String, message: String?, action: String){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: action, style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
     }
     
     // MARK: - Table view data source

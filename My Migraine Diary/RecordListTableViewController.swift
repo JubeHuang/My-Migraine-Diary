@@ -12,11 +12,16 @@ class RecordListTableViewController: UITableViewController {
     
     var container: NSPersistentContainer!
     var records = [StatusR]()
-
+//        didSet{
+//            self.container.saveContext()
+//        }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.bgGradient(view: view.self)
+        let bg = UIView()
+        tableView.backgroundView = bg.bgGradient(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: tableView.bounds.height))
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -25,37 +30,41 @@ class RecordListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func getRecords(){
-        let context = container.viewContext
-        do {
-            records = try context.fetch(StatusR.fetchRequest())
-        } catch {
-            print("fetch faild")
-        }
-
+    override func viewWillAppear(_ animated: Bool) {
+        records = container.getRecordsTimeAsc()
+        // 新增後列表跟著新增
+        tableView.reloadData()
     }
+    
+//    func getRecords(){
+//        let context = container.viewContext
+//        do {
+//            records = try context.fetch(StatusR.fetchRequest())
+//        } catch {
+//            print("fetch faild")
+//        }
+//    }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return records.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "\(RecordTableViewCell.self)", for: indexPath) as? RecordTableViewCell {
+            // Configure the cell...
+            let row = indexPath.row
+            
+            cell.updateUI(record: records[row])
+            
+            return cell
+        }
+        return UITableViewCell()
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -65,17 +74,19 @@ class RecordListTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let context = container.viewContext
+            let record = records[indexPath.row]
+            records.remove(at: indexPath.row)
+            context.delete(record)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }  
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

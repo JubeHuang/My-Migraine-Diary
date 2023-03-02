@@ -29,6 +29,7 @@
 		8D796CA329A7681F003782F4 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8D796CA229A7681F003782F4 /* FacebookLogin */; };
 		8D796CA729A778BD003782F4 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 8D796CA629A778BD003782F4 /* GoogleSignIn */; };
 		8D83C0CD29AE12D800F5D807 /* Status.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D83C0CB29AE12D800F5D807 /* Status.xcdatamodeld */; };
+		8DA9049B29AF0CF8009063DF /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */; };
 		8DFECD4029A9E99D00A99CC5 /* RecordStatusWording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		8D796C9F29A75997003782F4 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "My Migraine Diary.entitlements"; sourceTree = "<group>"; };
 		8D83C0CC29AE12D800F5D807 /* Status.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Status.xcdatamodel; sourceTree = "<group>"; };
+		8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStatusWording.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 				8D5132AF29A8FB69002DDB22 /* RecordStatusTableViewController.swift */,
 				8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */,
 				8D5132A329A8D5C7002DDB22 /* Main.storyboard */,
+				8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */,
 				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
 				8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */,
 				8D796C9F29A75997003782F4 /* Greeting.swift */,
@@ -202,6 +205,7 @@
 			files = (
 				8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */,
 				8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */,
+				8DA9049B29AF0CF8009063DF /* RecordTableViewCell.swift in Sources */,
 				8D027B7029AA0A740058FD32 /* View Extension.swift in Sources */,
 				8D5132B429A905B9002DDB22 /* RecordListTableViewController.swift in Sources */,
 				8D779FE729A616F100894357 /* AllLogInViewController.swift in Sources */,

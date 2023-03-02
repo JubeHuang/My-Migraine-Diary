@@ -119,6 +119,26 @@ extension NSPersistentContainer {
             }
         }
     }
+    
+    func getRecordsTimeAsc() -> [StatusR] {
+        var records = [StatusR]()
+        
+//        let startDate = Date()
+//        let endDate = Date(timeIntervalSince1970: 0)
+//        let predicate = NSPredicate(format: "time >= %@ AND time < %@", startDate as NSDate, endDate as NSDate)
+        let request = StatusR.fetchRequest()
+//        request.predicate = predicate
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \StatusR.startTime, ascending: false)
+        ]
+        
+        do {
+            records = try viewContext.fetch(request)
+        } catch {
+            print("fetch faild")
+        }
+        return records
+    }
 }
 
 
