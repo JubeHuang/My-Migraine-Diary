@@ -30,16 +30,56 @@ extension DateFormatter {
 }
 
 extension Calendar {
-    func getTimeDurationStr(start: Date, end: Date) -> String {
+    func getTimeDurationStr(start: Date, end: Date, stillGoing: Bool) -> String {
+        
+        if stillGoing {
+            return "頭痛持續中..."
+        } else {
+            
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.hour, .minute], from: start, to: end)
+            
+            let hours = components.hour ?? 0
+            let minutes = components.minute ?? 0
+            
+            let timeDifference = String(format: "歷時 %d小時%d分", hours, minutes)
+            
+            return timeDifference
+        }
+    }
+    
+    func getTimeDurationStr(start: Date, end: Date, str: String) -> String {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour, .minute], from: start, to: end)
         
         let hours = components.hour ?? 0
         let minutes = components.minute ?? 0
         
-        let timeDifference = String(format: "歷時 %d小時%d分", hours, minutes)
+        let timeDifference = String(format: str + " %d小時%d分", hours, minutes)
         
         return timeDifference
     }
 }
 
+extension NSObject {
+    func nsArrayToStringForLabel(_ array: NSObject?) -> String {
+        if let array {
+            let nsArray = array as! NSArray
+            if nsArray.count > 1 {
+                return "\(nsArray[0])+"
+            } else {
+                return "\(nsArray[0])"
+            }
+        } else {
+            return RecordStatusWording.noSelect.rawValue
+        }
+    }
+    
+    func toStringArray(_ array: NSObject?) -> [String]? {
+        if let nsArray = array as? NSArray {
+            return nsArray as? [String]
+        } else {
+            return nil
+        }
+    }
+}

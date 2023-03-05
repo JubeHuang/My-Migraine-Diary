@@ -11,7 +11,7 @@ import CoreData
 class RecordListTableViewController: UITableViewController {
     
     var container: NSPersistentContainer!
-    var records = [StatusR]()
+    var records = [Record]()
 //        didSet{
 //            self.container.saveContext()
 //        }
@@ -35,15 +35,6 @@ class RecordListTableViewController: UITableViewController {
         // 新增後列表跟著新增
         tableView.reloadData()
     }
-    
-//    func getRecords(){
-//        let context = container.viewContext
-//        do {
-//            records = try context.fetch(StatusR.fetchRequest())
-//        } catch {
-//            print("fetch faild")
-//        }
-//    }
 
     // MARK: - Table view data source
 
@@ -83,6 +74,7 @@ class RecordListTableViewController: UITableViewController {
             let record = records[indexPath.row]
             records.remove(at: indexPath.row)
             context.delete(record)
+            container.saveContext()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }  
     }

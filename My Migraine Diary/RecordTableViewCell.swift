@@ -10,7 +10,7 @@ import UIKit
 class RecordTableViewCell: UITableViewCell {
     
     @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var symptumLabel: UILabel!
+    @IBOutlet weak var symptomLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var cause: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -27,26 +27,13 @@ class RecordTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func updateUI(record: StatusR){
+    func updateUI(record: Record){
         let dateStr = DateFormatter().shortStyleTimeStr(time: record.startTime!)
         timeLabel.text = dateStr
         placeLabel.text = record.place
-        cause.text = record.cause
-        symptumLabel.text = record.symptom
+        cause.text = record.cause?.nsArrayToStringForLabel(record.cause!)
+        symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom!)
         scoreLabel.text = "\(record.score)"
-        durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!)
+        durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!, stillGoing: record.stillGoing)
     }
-    
-    func getTimeDurationStr(start: Date, end: Date) -> String {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.hour, .minute], from: start, to: end)
-        
-        let hours = components.hour ?? 0
-        let minutes = components.minute ?? 0
-        
-        let timeDifference = String(format: "歷時 %d小時%d分", hours, minutes)
-        
-        return timeDifference
-    }
-    
 }

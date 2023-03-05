@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "Status")
+        let container = NSPersistentContainer(name: "MyMigraineDiary")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 /*
@@ -120,16 +120,11 @@ extension NSPersistentContainer {
         }
     }
     
-    func getRecordsTimeAsc() -> [StatusR] {
-        var records = [StatusR]()
-        
-//        let startDate = Date()
-//        let endDate = Date(timeIntervalSince1970: 0)
-//        let predicate = NSPredicate(format: "time >= %@ AND time < %@", startDate as NSDate, endDate as NSDate)
-        let request = StatusR.fetchRequest()
-//        request.predicate = predicate
+    func getRecordsTimeAsc() -> [Record] {
+        var records = [Record]()
+        let request = Record.fetchRequest()
         request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \StatusR.startTime, ascending: false)
+            NSSortDescriptor(keyPath: \Record.startTime, ascending: false)
         ]
         
         do {

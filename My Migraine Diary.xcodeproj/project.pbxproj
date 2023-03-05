@@ -28,8 +28,11 @@
 		8D796CA029A75997003782F4 /* Greeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D796C9F29A75997003782F4 /* Greeting.swift */; };
 		8D796CA329A7681F003782F4 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8D796CA229A7681F003782F4 /* FacebookLogin */; };
 		8D796CA729A778BD003782F4 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 8D796CA629A778BD003782F4 /* GoogleSignIn */; };
-		8D83C0CD29AE12D800F5D807 /* Status.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D83C0CB29AE12D800F5D807 /* Status.xcdatamodeld */; };
 		8DA9049B29AF0CF8009063DF /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */; };
+		8DA9049E29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049C29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld */; };
+		8DA904A029B484D1009063DF /* Article Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049F29B484D1009063DF /* Article Controller.swift */; };
+		8DA904A229B4882F009063DF /* Article Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA904A129B4882F009063DF /* Article Struct.swift */; };
+		8DA904A429B49AE8009063DF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA904A329B49AE8009063DF /* NetworkError.swift */; };
 		8DFECD4029A9E99D00A99CC5 /* RecordStatusWording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +56,11 @@
 		8D779FE629A616F100894357 /* AllLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLogInViewController.swift; sourceTree = "<group>"; };
 		8D796C9F29A75997003782F4 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "My Migraine Diary.entitlements"; sourceTree = "<group>"; };
-		8D83C0CC29AE12D800F5D807 /* Status.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Status.xcdatamodel; sourceTree = "<group>"; };
 		8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		8DA9049D29B1BEAD009063DF /* MyMigraineDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyMigraineDiary.xcdatamodel; sourceTree = "<group>"; };
+		8DA9049F29B484D1009063DF /* Article Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article Controller.swift"; sourceTree = "<group>"; };
+		8DA904A129B4882F009063DF /* Article Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article Struct.swift"; sourceTree = "<group>"; };
+		8DA904A329B49AE8009063DF /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStatusWording.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,14 +100,18 @@
 			isa = PBXGroup;
 			children = (
 				8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */,
+				8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */,
 				8D027B6F29AA0A740058FD32 /* View Extension.swift */,
 				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
 				8D5132B329A905B9002DDB22 /* RecordListTableViewController.swift */,
 				8D5132AF29A8FB69002DDB22 /* RecordStatusTableViewController.swift */,
 				8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */,
+				8DA904A329B49AE8009063DF /* NetworkError.swift */,
 				8D5132A329A8D5C7002DDB22 /* Main.storyboard */,
-				8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */,
+				8DA9049F29B484D1009063DF /* Article Controller.swift */,
+				8DA904A129B4882F009063DF /* Article Struct.swift */,
 				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
+				8D779FD229A4A4CD00894357 /* LaunchScreen.storyboard */,
 				8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */,
 				8D796C9F29A75997003782F4 /* Greeting.swift */,
 				8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */,
@@ -110,10 +120,9 @@
 				8D779FC729A4A4CC00894357 /* AppDelegate.swift */,
 				8D779FC929A4A4CC00894357 /* SceneDelegate.swift */,
 				8D779FD029A4A4CD00894357 /* Assets.xcassets */,
-				8D779FD229A4A4CD00894357 /* LaunchScreen.storyboard */,
 				8D779FD529A4A4CD00894357 /* Info.plist */,
 				8D779FDB29A4A56E00894357 /* GoogleService-Info.plist */,
-				8D83C0CB29AE12D800F5D807 /* Status.xcdatamodeld */,
+				8DA9049C29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld */,
 			);
 			path = "My Migraine Diary";
 			sourceTree = "<group>";
@@ -203,19 +212,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DA904A429B49AE8009063DF /* NetworkError.swift in Sources */,
 				8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */,
+				8DA904A029B484D1009063DF /* Article Controller.swift in Sources */,
 				8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */,
 				8DA9049B29AF0CF8009063DF /* RecordTableViewCell.swift in Sources */,
 				8D027B7029AA0A740058FD32 /* View Extension.swift in Sources */,
+				8DA9049E29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld in Sources */,
 				8D5132B429A905B9002DDB22 /* RecordListTableViewController.swift in Sources */,
 				8D779FE729A616F100894357 /* AllLogInViewController.swift in Sources */,
+				8DA904A229B4882F009063DF /* Article Struct.swift in Sources */,
 				8DFECD4029A9E99D00A99CC5 /* RecordStatusWording.swift in Sources */,
 				8D5132B029A8FB69002DDB22 /* RecordStatusTableViewController.swift in Sources */,
 				8D779FC829A4A4CC00894357 /* AppDelegate.swift in Sources */,
 				8D779FE529A60F4100894357 /* SignInViewController.swift in Sources */,
 				8D5132A829A8DB30002DDB22 /* DiscoverViewController.swift in Sources */,
 				8D796CA029A75997003782F4 /* Greeting.swift in Sources */,
-				8D83C0CD29AE12D800F5D807 /* Status.xcdatamodeld in Sources */,
 				8D779FCA29A4A4CC00894357 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,13 +507,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		8D83C0CB29AE12D800F5D807 /* Status.xcdatamodeld */ = {
+		8DA9049C29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8D83C0CC29AE12D800F5D807 /* Status.xcdatamodel */,
+				8DA9049D29B1BEAD009063DF /* MyMigraineDiary.xcdatamodel */,
 			);
-			currentVersion = 8D83C0CC29AE12D800F5D807 /* Status.xcdatamodel */;
-			path = Status.xcdatamodeld;
+			currentVersion = 8DA9049D29B1BEAD009063DF /* MyMigraineDiary.xcdatamodel */;
+			path = MyMigraineDiary.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

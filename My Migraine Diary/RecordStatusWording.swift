@@ -27,7 +27,6 @@ enum Symptom: String, CaseIterable {
     case noSelect = "無"
 }
 
-//視覺預兆：眼冒金星、光點閃爍、盲點擴大，或只是模糊不清。感覺異常：以手臂與臉為主。針刺感，甚至半邊癱軟無力。語言障礙：口齒不清，或是失語症狀。聽幻覺
 enum Sign: String, CaseIterable {
     case tired = "疲倦哈欠"
     case 腸胃不適

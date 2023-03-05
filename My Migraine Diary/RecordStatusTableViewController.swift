@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+protocol RecordStatusTableViewControllerDelegate: AnyObject {
+    func recordStatusTableViewControllerDelegate(_ controller: RecordStatusTableViewController, record : Record)
+}
+
 class RecordStatusTableViewController: UITableViewController {
     
     @IBOutlet weak var stillGoingBtn: UIButton!
@@ -25,8 +29,10 @@ class RecordStatusTableViewController: UITableViewController {
     @IBOutlet weak var effectCell: StatusBtnTableViewCell!
     
     var score = 0
-    var records = [StatusR]()
+//    var records = [Record]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    weak var delegate: RecordStatusTableViewControllerDelegate?
+    var record: Record?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,21 +41,25 @@ class RecordStatusTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        updateUI()
+        if let record {
+            showUnfinUI(record: record)
+        } else {
+            updateUI()
+        }
     }
     
     @IBAction func tapStillGoing(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        endTime.isEnabled = !sender.isSelected
+        stillGoingBtn.isSelected = sender.isSelected
+//        delegate?.recordStatusTableViewControllerDelegate(self, record: record)
         if sender.isSelected {
             sender.configuration?.background.backgroundColor = UIColor(named: "bluishGrey")
             sender.configuration?.baseForegroundColor = .white
-            endTime.isEnabled = false
             endTime.alpha = 0.2
         } else {
             sender.configuration?.background.backgroundColor = .clear
             sender.configuration?.baseForegroundColor = UIColor(named: "bluishGrey")
-            endTime.isEnabled = true
             endTime.alpha = 1
         }
     }
@@ -67,26 +77,38 @@ class RecordStatusTableViewController: UITableViewController {
     @IBAction func saveStatus(_ sender: Any) {
         
         let start = startTime.date
-        
-        var end = endTime.date
-        if stillGoingBtn.isSelected {
-            end = startTime.date
-        }
-        
+        let end = stillGoingBtn.isSelected ? startTime.date : endTime.date
         let location = RecordStatusWording.noSelect.rawValue
-        let place = RecordStatusWording.noSelect.rawValue
-        let med = medCell.selectStrs.first ?? RecordStatusWording.noSelect.rawValue
-        let effect = effectCell.selectStrs.first ?? RecordStatusWording.noSelect.rawValue
+        let place = placeCell.selectStrs.first
+        let med = medCell.selectStrs.first
+        let effect = effectCell.selectStrs.first
         let note = note.text
-        let quantityText = quantityTextfield.text!
-        let quantity = Double(quantityText)
+        let quantity = Double(quantityTextfield.text!)
         
-        if endTime.date <= startTime.date, !stillGoingBtn.isSelected {
+        if (endTime.date <= startTime.date && !stillGoingBtn.isSelected) {
             alert(title: "時間錯誤", message: "結束時間需比開始時間晚噢！", action: "OK")
+        } else if endTime.date > Date.now {
+            alert(title: "時間錯誤", message: "結束時間不能設於未來噢！", action: "OK")
         } else {
             save(start: start, end: end, location: location, score: score, symptom: symptomCell.selectStrs, sign: signCell.selectStrs, cause: causeCell.selectStrs, place: place, med: med, medEffect: effect, medQuantity: quantity, note: note)
+            // update record
+            if let record {
+                record.startTime = start
+                record.endTime = end
+                record.location = location
+                record.score = Int16(score)
+                record.symptom = symptomCell.selectStrs as NSArray
+                record.sign = signCell.selectStrs as NSArray
+                record.cause = causeCell.selectStrs as NSArray
+                record.place = place
+                record.med = med
+                record.medEffect = effect
+                record.medQuantity = quantity ?? 0.0
+                record.note = note
+                appDelegate.persistentContainer.saveContext()
+                delegate?.recordStatusTableViewControllerDelegate(self, record: record)
+            }
         }
-        
         navigationController?.popViewController(animated: true)
     }
     
@@ -95,30 +117,63 @@ class RecordStatusTableViewController: UITableViewController {
         
         let context = appDelegate.persistentContainer.viewContext
         
-        let record = StatusR(context: context)
-        record.startTime = start
-        record.endTime = end
-        record.location = location ?? RecordStatusWording.noSelect.rawValue
-        record.score = Int16(score)
-        record.symptom = symptom.first ?? RecordStatusWording.noSelect.rawValue
-        record.cause = cause.first ?? RecordStatusWording.noSelect.rawValue
-        record.sign = sign.first ?? RecordStatusWording.noSelect.rawValue
-        record.place = place ?? RecordStatusWording.noSelect.rawValue
-        record.med = med ?? Med.allCases.last?.rawValue
-        record.medEffect = medEffect ?? ""
-        record.medQuantity = medQuantity ?? 0.0
-        record.note = note ?? ""
+        let statusRecord = Record(context: context)
+        statusRecord.startTime = start
+        statusRecord.endTime = end
+        statusRecord.location = location ?? RecordStatusWording.noSelect.rawValue
+        statusRecord.score = Int16(score)
+        statusRecord.symptom = symptom as NSArray
+        statusRecord.cause = cause as NSArray
+        statusRecord.sign = sign as NSArray
+        statusRecord.place = place
+        statusRecord.med = med
+        statusRecord.medEffect = medEffect
+        statusRecord.medQuantity = medQuantity ?? 0.0
+        statusRecord.note = note
+        statusRecord.stillGoing = stillGoingBtn.isSelected
+        
+        delegate?.recordStatusTableViewControllerDelegate(self, record: statusRecord)
         
         appDelegate.persistentContainer.saveContext()
     }
     
     func updateUI(){
-        symptomCell.configBtns(num: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map{"\($0.rawValue)"})
-        signCell.configBtns(num: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map{"\($0.rawValue)"})
-        causeCell.configBtns(num: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map{"\($0.rawValue)"})
-        placeCell.configBtns(num: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map{"\($0.rawValue)"})
-        medCell.configBtns(num: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map{"\($0.rawValue)"})
-        effectCell.configBtns(num: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map{"\($0.rawValue)"})
+        symptomCell.configBtns(num: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map{"\($0.rawValue)"}, selectStrs: nil)
+        signCell.configBtns(num: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map{"\($0.rawValue)"}, selectStrs: nil)
+        causeCell.configBtns(num: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map{"\($0.rawValue)"}, selectStrs: nil)
+        placeCell.configBtns(num: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map{"\($0.rawValue)"}, selectStrs: nil)
+        medCell.configBtns(num: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map{"\($0.rawValue)"}, selectStrs: nil)
+        effectCell.configBtns(num: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map{"\($0.rawValue)"}, selectStrs: nil)
+    }
+    
+    func showUnfinUI(record: Record){
+        // 持續btn
+        stillGoingBtn.isSelected = true
+//        delegate?.recordStatusTableViewControllerDelegate(self, didSelect: true)
+        stillGoingBtn.configuration?.background.backgroundColor = UIColor(named: "bluishGrey")
+        stillGoingBtn.configuration?.baseForegroundColor = .white
+        endTime.isEnabled = false
+        endTime.alpha = 0.2
+        
+        // 其餘按鈕顯示
+        startTime.date = record.startTime!
+        symptomCell.configBtns(num: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map{"\($0.rawValue)"}, selectStrs: record.symptom?.toStringArray(record.symptom))
+        signCell.configBtns(num: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map{"\($0.rawValue)"}, selectStrs: record.sign?.toStringArray(record.sign))
+        causeCell.configBtns(num: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map{"\($0.rawValue)"}, selectStrs: record.cause?.toStringArray(record.cause))
+        placeCell.configBtns(num: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map{"\($0.rawValue)"}, selectStrs: [record.place ?? RecordStatusWording.noSelect.rawValue])
+        medCell.configBtns(num: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map{"\($0.rawValue)"}, selectStrs: [record.med ?? RecordStatusWording.noSelect.rawValue])
+        effectCell.configBtns(num: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map{"\($0.rawValue)"}, selectStrs: [record.medEffect ?? RecordStatusWording.noSelect.rawValue])
+        
+        // 選取的字串 新+舊
+        if let symptomStrs = record.symptom?.toStringArray(record.symptom) {
+            symptomCell.selectStrs.append(contentsOf: (symptomStrs))
+        }
+        if let signStrs = record.sign?.toStringArray(record.sign) {
+            signCell.selectStrs.append(contentsOf: (signStrs))
+        }
+        if let causeStrs = record.cause?.toStringArray(record.cause) {
+            causeCell.selectStrs.append(contentsOf: (causeStrs))
+        }
     }
     
     func alert(title: String, message: String?, action: String){

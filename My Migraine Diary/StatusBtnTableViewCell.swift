@@ -16,7 +16,7 @@ class StatusBtnTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func configBtns(num: Int, view: UIView, title: [String]){
+    func configBtns(num: Int, view: UIView, title: [String], selectStrs: [String]?){
         // 設定每個UIButton的大小和間距
         let buttonWidth = 74
         let buttonHeight = 60
@@ -62,6 +62,15 @@ class StatusBtnTableViewCell: UITableViewCell {
             button.frame = CGRect(x: x, y: 0, width: buttonWidth, height: buttonHeight)
             button.setAttributedTitle(attrStr, for: .normal)
             
+            // 判斷Button有沒有被選過
+            if let selectStrs {
+                selectStrs.forEach { str in
+                    if str == attrStr.string {
+                        button.isSelected = true
+                    }
+                }
+            }
+            
             //點擊Btn後要做的事
             button.addTarget(self, action: #selector(buttonSelected(sender:)), for: .touchUpInside)
             
@@ -96,6 +105,17 @@ class StatusBtnTableViewCell: UITableViewCell {
             }
         }
         print(selectStrs)
+    }
+    
+    func showSelectedBtn(selectedTitles: [String], titles: [String]){
+        let set1 = Set(titles)
+        let set2 = Set(selectedTitles)
+
+        let intersection = set1.intersection(set2)
+        let subtracting = set1.subtracting(set2)
+        let commonStrings = Array(intersection)
+        let unselectStrings = Array(subtracting)
+        
     }
 
 
