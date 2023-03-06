@@ -63,13 +63,11 @@ extension Calendar {
 
 extension NSObject {
     func nsArrayToStringForLabel(_ array: NSObject?) -> String {
-        if let array {
-            let nsArray = array as! NSArray
-            if nsArray.count > 1 {
-                return "\(nsArray[0])+"
-            } else {
-                return "\(nsArray[0])"
-            }
+        guard let nsArray = array as? NSArray else { return RecordStatusWording.noSelect.rawValue }
+        if nsArray.count > 1 {
+            return "\(nsArray[0])+"
+        } else if nsArray.count == 1{
+            return "\(nsArray[0])"
         } else {
             return RecordStatusWording.noSelect.rawValue
         }

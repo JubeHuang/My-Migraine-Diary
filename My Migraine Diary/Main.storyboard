@@ -1155,18 +1155,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="separatorColor" name="bluishGrey"/>
                         <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="搜尋" id="BvY-bw-DL8">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="搜尋" showsCancelButton="YES" id="BvY-bw-DL8">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" name="bluishGrey"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="V1G-1Z-Aqz" id="79z-bg-d7A"/>
                             </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="RecordTableViewCell" rowHeight="111" id="2T0-BL-K5l" customClass="RecordTableViewCell" customModule="My_Migraine_Diary" customModuleProvider="target">
-                                <rect key="frame" x="20" y="99.333332061767578" width="335" height="111"/>
+                                <rect key="frame" x="20" y="111.33333206176758" width="335" height="111"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2T0-BL-K5l" id="d62-Zz-qLi">
                                     <rect key="frame" x="0.0" y="0.0" width="335" height="111"/>
@@ -1397,7 +1401,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wcU-1N-0Si"/>
+        <segue reference="jmn-lx-OvV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addEndTime" width="252" height="252"/>

@@ -30,9 +30,9 @@ class RecordTableViewCell: UITableViewCell {
     func updateUI(record: Record){
         let dateStr = DateFormatter().shortStyleTimeStr(time: record.startTime!)
         timeLabel.text = dateStr
-        placeLabel.text = record.place
-        cause.text = record.cause?.nsArrayToStringForLabel(record.cause!)
-        symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom!)
+        placeLabel.text = record.place ?? RecordStatusWording.noSelect.rawValue
+        cause.text = record.cause?.nsArrayToStringForLabel(record.cause)
+        symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom)
         scoreLabel.text = "\(record.score)"
         durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!, stillGoing: record.stillGoing)
     }

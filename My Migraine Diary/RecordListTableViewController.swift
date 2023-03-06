@@ -12,10 +12,7 @@ class RecordListTableViewController: UITableViewController {
     
     var container: NSPersistentContainer!
     var records = [Record]()
-//        didSet{
-//            self.container.saveContext()
-//        }
-    
+    var filterRecords = [Record]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +29,27 @@ class RecordListTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         records = container.getRecordsTimeAsc()
+        filterRecords = records
         // 新增後列表跟著新增
+        tableView.reloadData()
+    }
+    
+    func search(_ searchTerm: String){
+        if searchTerm.isEmpty {
+            filterRecords = records
+        } else {
+            filterRecords = records.filter { record in
+                let placeMatch = record.place?.contains(searchTerm) ?? false
+                let medMatch = record.med?.contains(searchTerm) ?? false
+                let effectMatch = record.medEffect?.contains(searchTerm) ?? false
+                let noteMatch = record.note?.contains(searchTerm) ?? false
+                let signMatch = (record.sign as? [String])?.contains(searchTerm) ?? false
+                let causeMatch = (record.cause as? [String])?.contains(searchTerm) ?? false
+                let symptomMatch = (record.symptom as? [String])?.contains(searchTerm) ?? false
+                return placeMatch || medMatch || effectMatch || noteMatch || signMatch || causeMatch || symptomMatch
+            }
+    
+        }
         tableView.reloadData()
     }
 
@@ -40,7 +57,7 @@ class RecordListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return records.count
+        return filterRecords.count
     }
 
     
@@ -49,7 +66,7 @@ class RecordListTableViewController: UITableViewController {
             // Configure the cell...
             let row = indexPath.row
             
-            cell.updateUI(record: records[row])
+            cell.updateUI(record: filterRecords[row])
             
             return cell
         }
@@ -105,4 +122,22 @@ class RecordListTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension RecordListTableViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let searchTerm = searchBar.text ?? ""
+        search(searchTerm)
+        // 收鍵盤
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar.text == "" {
+            filterRecords = records
+            tableView.reloadData()
+        }
+        searchBar.resignFirstResponder()
+    }
 }

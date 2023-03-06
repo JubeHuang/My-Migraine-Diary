@@ -39,7 +39,12 @@ class DiscoverViewController: UIViewController {
 
         // last recordLabels
         records = container.getRecordsTimeAsc()
-        if let record = records.first { updateLastRecordUI(record: record) }
+        if let record = records.first {
+            updateLastRecordUI(record: record)
+            unfinRecordUI(show: record.stillGoing)
+        } else {
+            unfinRecordUI(show: false)
+        }
     }
     
     @IBSegueAction func showEmptyRecord(_ coder: NSCoder) -> RecordStatusTableViewController? {
@@ -85,8 +90,8 @@ class DiscoverViewController: UIViewController {
     
     func updateLastRecordUI(record: Record) {
         scoreLabel.text = "\(record.score)"
-        symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom) ?? RecordStatusWording.noSelect.rawValue
-        causeLabel.text = record.cause?.nsArrayToStringForLabel(record.cause) ?? RecordStatusWording.noSelect.rawValue
+        symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom)
+        causeLabel.text = record.cause?.nsArrayToStringForLabel(record.cause)
         placeLabel.text = record.place ?? RecordStatusWording.noSelect.rawValue
         let dateStr = DateFormatter().shortStyleTimeStr(time: record.startTime!)
         startTimeLabel.text = dateStr

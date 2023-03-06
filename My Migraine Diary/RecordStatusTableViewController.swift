@@ -90,7 +90,6 @@ class RecordStatusTableViewController: UITableViewController {
         } else if endTime.date > Date.now {
             alert(title: "時間錯誤", message: "結束時間不能設於未來噢！", action: "OK")
         } else {
-            save(start: start, end: end, location: location, score: score, symptom: symptomCell.selectStrs, sign: signCell.selectStrs, cause: causeCell.selectStrs, place: place, med: med, medEffect: effect, medQuantity: quantity, note: note)
             // update record
             if let record {
                 record.startTime = start
@@ -105,8 +104,12 @@ class RecordStatusTableViewController: UITableViewController {
                 record.medEffect = effect
                 record.medQuantity = quantity ?? 0.0
                 record.note = note
+                record.stillGoing = stillGoingBtn.isSelected
                 appDelegate.persistentContainer.saveContext()
                 delegate?.recordStatusTableViewControllerDelegate(self, record: record)
+            } else {
+                // save new record
+                save(start: start, end: end, location: location, score: score, symptom: symptomCell.selectStrs, sign: signCell.selectStrs, cause: causeCell.selectStrs, place: place, med: med, medEffect: effect, medQuantity: quantity, note: note)
             }
         }
         navigationController?.popViewController(animated: true)
@@ -163,6 +166,13 @@ class RecordStatusTableViewController: UITableViewController {
         placeCell.configBtns(num: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map{"\($0.rawValue)"}, selectStrs: [record.place ?? RecordStatusWording.noSelect.rawValue])
         medCell.configBtns(num: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map{"\($0.rawValue)"}, selectStrs: [record.med ?? RecordStatusWording.noSelect.rawValue])
         effectCell.configBtns(num: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map{"\($0.rawValue)"}, selectStrs: [record.medEffect ?? RecordStatusWording.noSelect.rawValue])
+        
+        // score btn 顯示
+        let index = Int(record.score) - 1
+        if index >= 0 {
+            score = index
+            scorBtns[index].configuration?.background.backgroundColor = UIColor(named: "darkBlu")
+        }
         
         // 選取的字串 新+舊
         if let symptomStrs = record.symptom?.toStringArray(record.symptom) {
