@@ -33,6 +33,9 @@
 		8DA904A029B484D1009063DF /* Article Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049F29B484D1009063DF /* Article Controller.swift */; };
 		8DA904A229B4882F009063DF /* Article Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA904A129B4882F009063DF /* Article Struct.swift */; };
 		8DA904A429B49AE8009063DF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA904A329B49AE8009063DF /* NetworkError.swift */; };
+		8DB2329929B6E2CB002C4ECD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2329829B6E2CB002C4ECD /* WebViewController.swift */; };
+		8DC4274D29B70EE400514D99 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC4274C29B70EE400514D99 /* Charts */; };
+		8DC4274F29B740B500514D99 /* chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC4274E29B740B500514D99 /* chart.swift */; };
 		8DFECD4029A9E99D00A99CC5 /* RecordStatusWording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,8 @@
 		8DA9049F29B484D1009063DF /* Article Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article Controller.swift"; sourceTree = "<group>"; };
 		8DA904A129B4882F009063DF /* Article Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article Struct.swift"; sourceTree = "<group>"; };
 		8DA904A329B49AE8009063DF /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8DB2329829B6E2CB002C4ECD /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		8DC4274E29B740B500514D99 /* chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chart.swift; sourceTree = "<group>"; };
 		8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStatusWording.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D796CA729A778BD003782F4 /* GoogleSignIn in Frameworks */,
+				8DC4274D29B70EE400514D99 /* Charts in Frameworks */,
 				8D796CA329A7681F003782F4 /* FacebookLogin in Frameworks */,
 				8D779FDF29A4A74900894357 /* FirebaseAuth in Frameworks */,
 				8D779FE129A4A74900894357 /* FirebaseFirestoreSwift in Frameworks */,
@@ -99,6 +105,7 @@
 		8D779FC629A4A4CC00894357 /* My Migraine Diary */ = {
 			isa = PBXGroup;
 			children = (
+				8DB2329829B6E2CB002C4ECD /* WebViewController.swift */,
 				8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */,
 				8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */,
 				8D027B6F29AA0A740058FD32 /* View Extension.swift */,
@@ -108,6 +115,7 @@
 				8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */,
 				8DA904A329B49AE8009063DF /* NetworkError.swift */,
 				8D5132A329A8D5C7002DDB22 /* Main.storyboard */,
+				8DC4274E29B740B500514D99 /* chart.swift */,
 				8DA9049F29B484D1009063DF /* Article Controller.swift */,
 				8DA904A129B4882F009063DF /* Article Struct.swift */,
 				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
@@ -149,6 +157,7 @@
 				8D779FE229A4A74900894357 /* FirebaseStorage */,
 				8D796CA229A7681F003782F4 /* FacebookLogin */,
 				8D796CA629A778BD003782F4 /* GoogleSignIn */,
+				8DC4274C29B70EE400514D99 /* Charts */,
 			);
 			productName = "My Migraine Diary";
 			productReference = 8D779FC429A4A4CC00894357 /* My Migraine Diary.app */;
@@ -182,6 +191,7 @@
 				8D779FDD29A4A74900894357 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8D796CA129A7681F003782F4 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				8D796CA529A778BD003782F4 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				8DC4274B29B70EE400514D99 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 8D779FC529A4A4CC00894357 /* Products */;
 			projectDirPath = "";
@@ -213,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DA904A429B49AE8009063DF /* NetworkError.swift in Sources */,
+				8DB2329929B6E2CB002C4ECD /* WebViewController.swift in Sources */,
 				8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */,
 				8DA904A029B484D1009063DF /* Article Controller.swift in Sources */,
 				8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */,
@@ -226,6 +237,7 @@
 				8D5132B029A8FB69002DDB22 /* RecordStatusTableViewController.swift in Sources */,
 				8D779FC829A4A4CC00894357 /* AppDelegate.swift in Sources */,
 				8D779FE529A60F4100894357 /* SignInViewController.swift in Sources */,
+				8DC4274F29B740B500514D99 /* chart.swift in Sources */,
 				8D5132A829A8DB30002DDB22 /* DiscoverViewController.swift in Sources */,
 				8D796CA029A75997003782F4 /* Greeting.swift in Sources */,
 				8D779FCA29A4A4CC00894357 /* SceneDelegate.swift in Sources */,
@@ -476,6 +488,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		8DC4274B29B70EE400514D99 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -503,6 +523,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8D796CA529A778BD003782F4 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		8DC4274C29B70EE400514D99 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DC4274B29B70EE400514D99 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -12,8 +12,6 @@ class ArticleController {
     
     let baseUrl = URL(string: "https://newsapi.org/v2/everything?")
     
-    var imageCache = NSCache<NSURL, UIImage>()
-    
     func fetchArticle(language: String, completion: @escaping (Result<[Item], NetworkError>) -> Void) {
         guard let baseUrl else { return }
         var urlComponent = URLComponents(url: baseUrl, resolvingAgainstBaseURL: true)
@@ -46,17 +44,9 @@ class ArticleController {
     
     func fetchImage(url: URL?, completion: @escaping (UIImage?) -> Void){
         if let url {
-            // 緩存image
-            if let imageCache = imageCache.object(forKey: url as NSURL){
-                completion(imageCache)
-                return
-            }
-            
+
             URLSession.shared.dataTask(with: url) { data, urlResponse, error in
                 if let data, let image = UIImage(data: data) {
-                    // 如果cache有圖則不重複讀取
-                    self.imageCache.setObject(image, forKey: url as NSURL)
-                    // no cache
                     completion(image)
                 }else {
                     completion(UIImage(named: "article_imageEmpty"))

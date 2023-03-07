@@ -30,8 +30,22 @@ class RecordListTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         records = container.getRecordsTimeAsc()
         filterRecords = records
-        // 新增後列表跟著新增
+//        // 新增後列表跟著新增
+//        print("tableUpdate")
+//        for filterRecord in filterRecords {
+//            let context = container.viewContext
+//            context.delete(filterRecord)
+//            container.saveContext()
+//        }
         tableView.reloadData()
+    }
+    
+    @IBSegueAction func showRecord(_ coder: NSCoder) -> RecordStatusTableViewController? {
+        let controller = RecordStatusTableViewController(coder: coder)
+        if let row = tableView.indexPathForSelectedRow?.row {
+            controller?.record = records[row]
+        }
+        return controller
     }
     
     func search(_ searchTerm: String){
@@ -48,7 +62,6 @@ class RecordListTableViewController: UITableViewController {
                 let symptomMatch = (record.symptom as? [String])?.contains(searchTerm) ?? false
                 return placeMatch || medMatch || effectMatch || noteMatch || signMatch || causeMatch || symptomMatch
             }
-    
         }
         tableView.reloadData()
     }
@@ -88,8 +101,13 @@ class RecordListTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             let context = container.viewContext
-            let record = records[indexPath.row]
-            records.remove(at: indexPath.row)
+            let record = filterRecords[indexPath.row]
+            if let index = records.firstIndex(of: record) {
+                // 總列表刪除
+                records.remove(at: index)
+            }
+            // 篩選過列表刪除
+            filterRecords.remove(at: indexPath.row)
             context.delete(record)
             container.saveContext()
             tableView.deleteRows(at: [indexPath], with: .fade)

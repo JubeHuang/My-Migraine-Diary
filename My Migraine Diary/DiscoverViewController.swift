@@ -7,12 +7,14 @@
 
 import UIKit
 import CoreData
+import Charts
 
 class DiscoverViewController: UIViewController {
 
    
+    @IBOutlet weak var chartView: CombinedChartView!
     @IBOutlet var articleTitles: [UILabel]!
-    @IBOutlet var articleImages: [UIImageView]!
+    @IBOutlet var articleBtns: [UIButton]!
     @IBOutlet weak var endRecordBtn: UIButton!
     @IBOutlet weak var timeOnBtnLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
@@ -27,7 +29,6 @@ class DiscoverViewController: UIViewController {
     
     var container: NSPersistentContainer!
     var records = [Record]()
-    var stillGoing: Bool?
     var articles = [Item]()
     
     override func viewDidLoad() {
@@ -42,23 +43,17 @@ class DiscoverViewController: UIViewController {
         if let record = records.first {
             updateLastRecordUI(record: record)
             unfinRecordUI(show: record.stillGoing)
+            
+            // chart
+            let averageTime = Chart.calculateAveTime(records: records)
+            let recordTimes = Chart.calculateRecordTimes(records: records)
+            Chart.convertCombines(dataEntryX: Chart.monthArray, dataEntryY: averageTime, dataEntryZ: recordTimes, combineView: chartView)
         } else {
             unfinRecordUI(show: false)
+            noRecordUI()
+            let zeroArray = Array(repeating: 0.0, count: 12)
+            Chart.convertCombines(dataEntryX: Chart.monthArray, dataEntryY: zeroArray, dataEntryZ: zeroArray, combineView: chartView)
         }
-    }
-    
-    @IBSegueAction func showEmptyRecord(_ coder: NSCoder) -> RecordStatusTableViewController? {
-        let controller = RecordStatusTableViewController(coder: coder)
-        controller?.delegate = self
-        controller?.title = "新增紀錄"
-        return controller
-    }
-    @IBSegueAction func showUnfinRecord(_ coder: NSCoder) -> RecordStatusTableViewController? {
-        let controller = RecordStatusTableViewController(coder: coder)
-        controller?.delegate = self
-        controller?.record = records.first
-        controller?.title = "更新紀錄"
-        return controller
     }
     
     func updateBgUI(){
@@ -67,7 +62,8 @@ class DiscoverViewController: UIViewController {
         view.insertSubview(bg.bgGradient(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)), at: 0)
         
         // fetch article
-        ArticleController.shared.fetchArticle(language: "zh") { result in
+        ArticleController.shared.fetchArticle(language: "zh") { [weak self] result in
+            guard let self else { return }
             switch result {
             case .success(let articles):
                 self.articles = articles
@@ -76,7 +72,8 @@ class DiscoverViewController: UIViewController {
             }
         }
         if articles.count < 2 {
-            ArticleController.shared.fetchArticle(language: "en") { result in
+            ArticleController.shared.fetchArticle(language: "en") { [weak self] result in
+                guard let self else { return }
                 switch result {
                 case .success(let articles):
                     self.articles.append(contentsOf: articles)
@@ -86,6 +83,16 @@ class DiscoverViewController: UIViewController {
                 }
             }
         }
+        migraineGreetingLabel.text = MigraineGreeting.notMigraine.rawValue
+    }
+    
+    func noRecordUI(){
+        scoreLabel.text = "?"
+        durationLabel.text = ""
+        startTimeLabel.text = "未來某年某月某日"
+        causeLabel.text = "未知"
+        placeLabel.text = "未知"
+        symptomLabel.text = "未知"
     }
     
     func updateLastRecordUI(record: Record) {
@@ -111,7 +118,7 @@ class DiscoverViewController: UIViewController {
                 // fetch article image
                 ArticleController.shared.fetchImage(url: articles[i].urlToImage) { image in
                     DispatchQueue.main.async {
-                        self.articleImages[i].image = image
+                        self.articleBtns[i].configuration?.background.image = image
                     }
                 }
             }
@@ -124,16 +131,48 @@ class DiscoverViewController: UIViewController {
         addBtn.isHidden = show
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addRecord(_ sender: Any) {
+        performSegue(withIdentifier: "showRecord", sender: nil)
     }
-    */
-
+    
+    @IBAction func refineRecord(_ sender: Any) {
+        performSegue(withIdentifier: "showRecord", sender: records.first)
+    }
+    
+    @IBAction func tapArticle(_ sender: UIButton) {
+        guard let index = articleBtns.firstIndex(of: sender) else { return }
+        // 有拿到文章資料才能往下頁
+        if !articles.isEmpty {
+            performSegue(withIdentifier: "showArticle", sender: articles[index])
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+            // 前往文章webView
+        case "showArticle":
+            let article = sender as! Item
+            let destiController = segue.destination as! WebViewController
+            destiController.url = article.url
+            destiController.title = article.title
+            
+            // 前往紀錄頁
+        case "showRecord":
+            let controller = segue.destination as! RecordStatusTableViewController
+            controller.delegate = self
+            // 新增紀錄
+            if sender == nil {
+                controller.title = "新增紀錄"
+            } else {
+            // 更新紀錄
+                controller.record = sender as? Record
+                controller.title = "更新紀錄"
+            }
+        default:
+            break
+        }
+    }
 }
 
 extension DiscoverViewController: RecordStatusTableViewControllerDelegate {

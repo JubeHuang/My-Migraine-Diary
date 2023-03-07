@@ -29,7 +29,6 @@ class RecordStatusTableViewController: UITableViewController {
     @IBOutlet weak var effectCell: StatusBtnTableViewCell!
     
     var score = 0
-//    var records = [Record]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     weak var delegate: RecordStatusTableViewControllerDelegate?
     var record: Record?
@@ -42,7 +41,7 @@ class RecordStatusTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         if let record {
-            showUnfinUI(record: record)
+            showWrittenUI(record: record)
         } else {
             updateUI()
         }
@@ -52,7 +51,6 @@ class RecordStatusTableViewController: UITableViewController {
         sender.isSelected = !sender.isSelected
         endTime.isEnabled = !sender.isSelected
         stillGoingBtn.isSelected = sender.isSelected
-//        delegate?.recordStatusTableViewControllerDelegate(self, record: record)
         if sender.isSelected {
             sender.configuration?.background.backgroundColor = UIColor(named: "bluishGrey")
             sender.configuration?.baseForegroundColor = .white
@@ -115,6 +113,23 @@ class RecordStatusTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func deleteRecord(_ sender: Any) {
+        if let record {
+            let alertController = UIAlertController(title: "確定要刪除嗎？", message: "刪除的紀錄將無法復原", preferredStyle: .alert)
+            let action = UIAlertAction(title: "確認", style: .default) { [weak self] action in
+                guard let self else { return }
+                let context = self.appDelegate.persistentContainer.viewContext
+                context.delete(record)
+                self.appDelegate.persistentContainer.saveContext()
+                self.navigationController?.popViewController(animated: true)
+            }
+            let actionCancel = UIAlertAction(title: "取消", style: .cancel)
+            alertController.addAction(action)
+            alertController.addAction(actionCancel)
+            present(alertController, animated: true)
+        }
+        navigationController?.popViewController(animated: true)
+    }
     
     func save(start: Date, end: Date?, location: String?, score: Int, symptom: [String], sign: [String], cause: [String], place: String?, med: String?, medEffect: String?, medQuantity: Double?, note: String?) {
         
@@ -149,14 +164,19 @@ class RecordStatusTableViewController: UITableViewController {
         effectCell.configBtns(num: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map{"\($0.rawValue)"}, selectStrs: nil)
     }
     
-    func showUnfinUI(record: Record){
+    func showWrittenUI(record: Record){
         // 持續btn
-        stillGoingBtn.isSelected = true
-//        delegate?.recordStatusTableViewControllerDelegate(self, didSelect: true)
-        stillGoingBtn.configuration?.background.backgroundColor = UIColor(named: "bluishGrey")
-        stillGoingBtn.configuration?.baseForegroundColor = .white
-        endTime.isEnabled = false
-        endTime.alpha = 0.2
+        stillGoingBtn.isSelected = record.stillGoing
+        endTime.isEnabled = !record.stillGoing
+        if record.stillGoing {
+            stillGoingBtn.configuration?.background.backgroundColor = UIColor(named: "bluishGrey")
+            stillGoingBtn.configuration?.baseForegroundColor = .white
+            endTime.alpha = 0.2
+        } else {
+            stillGoingBtn.configuration?.background.backgroundColor = .clear
+            stillGoingBtn.configuration?.baseForegroundColor = UIColor(named: "bluishGrey")
+            endTime.alpha = 1
+        }
         
         // 其餘按鈕顯示
         startTime.date = record.startTime!

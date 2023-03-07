@@ -59,6 +59,18 @@ extension Calendar {
         
         return timeDifference
     }
+    
+    func getTimeDuration(start: Date, end: Date) -> Double {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute], from: start, to: end)
+        
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        
+        let totalHours = Double(hours) + Double(minutes) / 60.0
+        
+        return Double(Int(totalHours * 100)) / 100
+    }
 }
 
 extension NSObject {
