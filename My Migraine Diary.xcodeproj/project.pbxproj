@@ -107,10 +107,11 @@
 			children = (
 				8DC4275229B97ACD00514D99 /* Model */,
 				8DC4275129B97A8700514D99 /* View */,
-				8DC4275029B97A5E00514D99 /* Controller */,
+				8D98DEF029B984A900A38975 /* Other Controller */,
+				8DC4275029B97A5E00514D99 /* View Controller */,
 				8D5132A329A8D5C7002DDB22 /* Main.storyboard */,
-				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
 				8D779FD229A4A4CD00894357 /* LaunchScreen.storyboard */,
+				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
 				8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */,
 				8D779FC729A4A4CC00894357 /* AppDelegate.swift */,
 				8D779FC929A4A4CC00894357 /* SceneDelegate.swift */,
@@ -122,7 +123,15 @@
 			path = "My Migraine Diary";
 			sourceTree = "<group>";
 		};
-		8DC4275029B97A5E00514D99 /* Controller */ = {
+		8D98DEF029B984A900A38975 /* Other Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8DA9049F29B484D1009063DF /* Article Controller.swift */,
+			);
+			path = "Other Controller";
+			sourceTree = "<group>";
+		};
+		8DC4275029B97A5E00514D99 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				8DB2329829B6E2CB002C4ECD /* WebViewController.swift */,
@@ -132,7 +141,7 @@
 				8D779FE629A616F100894357 /* AllLogInViewController.swift */,
 				8D779FE429A60F4100894357 /* SignInViewController.swift */,
 			);
-			path = Controller;
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		8DC4275129B97A8700514D99 /* View */ = {
@@ -151,7 +160,6 @@
 				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
 				8DA904A329B49AE8009063DF /* NetworkError.swift */,
 				8DC4274E29B740B500514D99 /* chart.swift */,
-				8DA9049F29B484D1009063DF /* Article Controller.swift */,
 				8DA904A129B4882F009063DF /* Article Struct.swift */,
 				8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */,
 				8D796C9F29A75997003782F4 /* Greeting.swift */,
