@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D027B7029AA0A740058FD32 /* View Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B6F29AA0A740058FD32 /* View Extension.swift */; };
+		8D027B7029AA0A740058FD32 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B6F29AA0A740058FD32 /* Extension.swift */; };
 		8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */; };
 		8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */; };
 		8D5132A229A8D4DF002DDB22 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */; };
@@ -40,7 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8D027B6F29AA0A740058FD32 /* View Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View Extension.swift"; sourceTree = "<group>"; };
+		8D027B6F29AA0A740058FD32 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
 		8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBtnTableViewCell.swift; sourceTree = "<group>"; };
 		8D5132A129A8D4DF002DDB22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "My Migraine Diary/Base.lproj/LogIn.storyboard"; sourceTree = "<group>"; };
@@ -105,26 +105,13 @@
 		8D779FC629A4A4CC00894357 /* My Migraine Diary */ = {
 			isa = PBXGroup;
 			children = (
-				8DB2329829B6E2CB002C4ECD /* WebViewController.swift */,
-				8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */,
-				8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */,
-				8D027B6F29AA0A740058FD32 /* View Extension.swift */,
-				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
-				8D5132B329A905B9002DDB22 /* RecordListTableViewController.swift */,
-				8D5132AF29A8FB69002DDB22 /* RecordStatusTableViewController.swift */,
-				8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */,
-				8DA904A329B49AE8009063DF /* NetworkError.swift */,
+				8DC4275229B97ACD00514D99 /* Model */,
+				8DC4275129B97A8700514D99 /* View */,
+				8DC4275029B97A5E00514D99 /* Controller */,
 				8D5132A329A8D5C7002DDB22 /* Main.storyboard */,
-				8DC4274E29B740B500514D99 /* chart.swift */,
-				8DA9049F29B484D1009063DF /* Article Controller.swift */,
-				8DA904A129B4882F009063DF /* Article Struct.swift */,
 				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
 				8D779FD229A4A4CD00894357 /* LaunchScreen.storyboard */,
 				8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */,
-				8D796C9F29A75997003782F4 /* Greeting.swift */,
-				8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */,
-				8D779FE629A616F100894357 /* AllLogInViewController.swift */,
-				8D779FE429A60F4100894357 /* SignInViewController.swift */,
 				8D779FC729A4A4CC00894357 /* AppDelegate.swift */,
 				8D779FC929A4A4CC00894357 /* SceneDelegate.swift */,
 				8D779FD029A4A4CD00894357 /* Assets.xcassets */,
@@ -133,6 +120,43 @@
 				8DA9049C29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld */,
 			);
 			path = "My Migraine Diary";
+			sourceTree = "<group>";
+		};
+		8DC4275029B97A5E00514D99 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8DB2329829B6E2CB002C4ECD /* WebViewController.swift */,
+				8D5132B329A905B9002DDB22 /* RecordListTableViewController.swift */,
+				8D5132AF29A8FB69002DDB22 /* RecordStatusTableViewController.swift */,
+				8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */,
+				8D779FE629A616F100894357 /* AllLogInViewController.swift */,
+				8D779FE429A60F4100894357 /* SignInViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8DC4275129B97A8700514D99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */,
+				8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8DC4275229B97ACD00514D99 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D027B6F29AA0A740058FD32 /* Extension.swift */,
+				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
+				8DA904A329B49AE8009063DF /* NetworkError.swift */,
+				8DC4274E29B740B500514D99 /* chart.swift */,
+				8DA9049F29B484D1009063DF /* Article Controller.swift */,
+				8DA904A129B4882F009063DF /* Article Struct.swift */,
+				8DFECD3F29A9E99D00A99CC5 /* RecordStatusWording.swift */,
+				8D796C9F29A75997003782F4 /* Greeting.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,7 +252,7 @@
 				8DA904A029B484D1009063DF /* Article Controller.swift in Sources */,
 				8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */,
 				8DA9049B29AF0CF8009063DF /* RecordTableViewCell.swift in Sources */,
-				8D027B7029AA0A740058FD32 /* View Extension.swift in Sources */,
+				8D027B7029AA0A740058FD32 /* Extension.swift in Sources */,
 				8DA9049E29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld in Sources */,
 				8D5132B429A905B9002DDB22 /* RecordListTableViewController.swift in Sources */,
 				8D779FE729A616F100894357 /* AllLogInViewController.swift in Sources */,

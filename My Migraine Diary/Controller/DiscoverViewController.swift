@@ -12,6 +12,7 @@ import Charts
 class DiscoverViewController: UIViewController {
 
    
+    @IBOutlet weak var seconedChart: UIView!
     @IBOutlet weak var chartView: CombinedChartView!
     @IBOutlet var articleTitles: [UILabel]!
     @IBOutlet var articleBtns: [UIButton]!
@@ -60,6 +61,9 @@ class DiscoverViewController: UIViewController {
         // add bgGradient
         let bg = UIView()
         view.insertSubview(bg.bgGradient(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)), at: 0)
+        
+        // secondChart hide
+        seconedChart.isHidden = true
         
         // fetch article
         ArticleController.shared.fetchArticle(language: "zh") { [weak self] result in
@@ -131,6 +135,16 @@ class DiscoverViewController: UIViewController {
         addBtn.isHidden = show
     }
 
+    @IBAction func controlSegment(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            chartView.isHidden = false
+            seconedChart.isHidden = true
+        } else {
+            chartView.isHidden = true
+            seconedChart.isHidden = false
+        }
+    }
+    
     @IBAction func addRecord(_ sender: Any) {
         performSegue(withIdentifier: "showRecord", sender: nil)
     }
