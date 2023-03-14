@@ -10,6 +10,8 @@ import CoreData
 
 class RecordListTableViewController: UITableViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var container: NSPersistentContainer!
     var records = [Record]()
     var filterRecords = [Record]()
@@ -20,23 +22,15 @@ class RecordListTableViewController: UITableViewController {
         let bg = UIView()
         tableView.backgroundView = bg.bgGradient(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: tableView.bounds.height))
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // statusBar
+        navigationController!.navigationBar.scrollEdgeAppearance = customNavBarAppearance(appearance: "scrollEdgeAppearance")
+        navigationController!.navigationBar.standardAppearance = customNavBarAppearance(appearance: "standardAppearance")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         records = container.getRecordsTimeAsc()
         filterRecords = records
-//        // 新增後列表跟著新增
-//        print("tableUpdate")
-//        for filterRecord in filterRecords {
-//            let context = container.viewContext
-//            context.delete(filterRecord)
-//            container.saveContext()
-//        }
+        // 新增後列表跟著新增
         tableView.reloadData()
     }
     
@@ -45,6 +39,7 @@ class RecordListTableViewController: UITableViewController {
         if let row = tableView.indexPathForSelectedRow?.row {
             controller?.record = records[row]
         }
+        controller?.title = "紀錄"
         return controller
     }
     

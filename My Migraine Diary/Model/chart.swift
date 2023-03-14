@@ -13,7 +13,6 @@ class Chart {
     static let monthArray = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
     
     static let lightGrey = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
-    static let pink = UIColor(red: 242/255, green: 169/255, blue: 124/255, alpha: 1)
     
     static func convertCombines(dataEntryX forX:[String],dataEntryY 線條圖: [Double], dataEntryZ 直條圖: [Double], combineView: CombinedChartView) {
         var dataEntries: [BarChartDataEntry] = []
@@ -40,16 +39,17 @@ class Chart {
         
         // cancel dot
         lineChartSet.drawCirclesEnabled = false
-        lineChartSet.mode = .cubicBezier
-        lineChartSet.valueTextColor = pink
+        lineChartSet.mode = .horizontalBezier
+        lineChartSet.valueTextColor = UIColor.appColor(.pink)!
         lineChartSet.valueFont = .systemFont(ofSize: 9)
+        
         // line color & width
-        lineChartSet.setColor(pink)
+        lineChartSet.setColor(UIColor.appColor(.pink)!)
         lineChartSet.lineWidth = 2
         
         // make gradient
         lineChartSet.drawFilledEnabled = true
-        lineChartSet.fillColor = pink
+        lineChartSet.fillColor = UIColor.appColor(.pink)!
         lineChartSet.fillAlpha = 1
         // 漸變顏色數組
         let gradientColors = [CGColor(red: 242/255, green: 169/255, blue: 124/255, alpha: 1), CGColor(red: 242/255, green: 169/255, blue: 124/255, alpha: 0.1)] as CFArray
@@ -73,12 +73,18 @@ class Chart {
         combineView.xAxis.valueFormatter = IndexAxisValueFormatter(values: forX)
         combineView.xAxis.granularity = 1
         
+        // data textColor
+        combineView.legend.textColor = .white
+        
+        // empty state
+        combineView.noDataText = "目前尚無任何紀錄 快去新增吧！"
+        combineView.noDataTextColor = UIColor.appColor(.pink)!
+        
         // hidden grid
         combineView.xAxis.drawGridLinesEnabled = false
         combineView.leftAxis.drawGridLinesEnabled = false
         combineView.rightAxis.drawGridLinesEnabled = false
-        // 隱藏右邊欄位的資料
-//        combineView.rightAxis.enabled = false
+
         // 隱藏左邊欄位的資料
         combineView.leftAxis.enabled = false
         // animation

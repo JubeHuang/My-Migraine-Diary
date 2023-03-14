@@ -14,7 +14,6 @@ enum RecordStatusWording: String, CaseIterable {
 
 enum Symptom: String, CaseIterable {
     case nausea = "噁心"
-    case vomit = "想吐"
     case light = "怕光"
     case noise = "怕吵"
     case dizzy = "頭暈"
@@ -22,24 +21,24 @@ enum Symptom: String, CaseIterable {
     case pulsating = "搏動性疼痛"
     case migraine = "單側頭痛"
     case pounding = "陣陣抽痛"
-    case other = "其他"
-    case notKnow = "不清楚"
-    case noSelect = "無"
+    case otherSymptom = "其他"
+    case notKnowSymptom = "不清楚"
+    case noSelectSymptom = "無"
 }
 
 enum Sign: String, CaseIterable {
     case tired = "疲倦哈欠"
-    case 腸胃不適
-    case 胃口改變
-    case 鬱悶焦躁
-    case 頸部僵硬
-    case 視覺預兆
-    case 感覺異常
-    case 語言障礙
-    case 聽幻覺
-    case other = "其他"
-    case notKnow = "不清楚"
-    case noSelect = "無"
+    case stomach = "腸胃不適"
+    case appetite = "胃口改變"
+    case depressed = "鬱悶焦躁"
+    case neck = "頸部僵硬"
+    case vision = "視覺預兆"
+    case strange = "感覺異常"
+    case language = "語言障礙"
+    case hallucination = "聽幻覺"
+    case otherSign = "其他"
+    case notKnowSign = "不清楚"
+    case noSelectSign = "無"
 }
 
 enum Cause: String, CaseIterable {
@@ -48,15 +47,15 @@ enum Cause: String, CaseIterable {
     case weather = "天氣"
     case pressure = "壓力"
     case hunger = "飢餓"
-    case light = "光刺激"
+    case photostimulation = "光刺激"
     case food = "食物"
     case alcho = "酒精"
-    case noise = "聲音"
+    case sound = "聲音"
     case sleep = "睡眠不足"
     case med = "藥物"
-    case other = "其他"
-    case notKnow = "不清楚"
-    case noSelect = "無"
+    case otherCause = "其他"
+    case notKnowCause = "不清楚"
+    case noSelectCause = "無"
 }
 
 enum Place: String, CaseIterable {
@@ -66,21 +65,21 @@ enum Place: String, CaseIterable {
     case transit = "交通中"
     case bed = "床上"
     case out = "戶外"
-    case other = "其他"
-    case notKnow = "不清楚"
+    case otherPlace = "其他"
+    case notKnowPlace = "不清楚"
 }
 
 enum MedEffect: String, CaseIterable {
     case no = "無效果"
     case little = "有點效果"
     case good = "非常有效"
-    case noSelect = "無服用"
+    case noSelectMedEffect = "無服用"
 }
 
 enum Med: String, CaseIterable {
-    case 止痛藥
-    case 非類固醇消炎止痛藥
-    case 麥角胺
-    case 翠普登
-    case noSelect = "無服用"
+    case painkiller = "止痛藥"
+    case NSAIDs = "非類固醇消炎止痛藥"
+    case ergotamine = "麥角胺"
+    case tripton = "翠普登"
+    case noSelectMed = "無服用"
 }

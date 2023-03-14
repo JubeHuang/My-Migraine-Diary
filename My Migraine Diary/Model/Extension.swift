@@ -86,10 +86,46 @@ extension NSObject {
     }
     
     func toStringArray(_ array: NSObject?) -> [String]? {
-        if let nsArray = array as? NSArray {
-            return nsArray as? [String]
+        if let nsArray = array as? [String] {
+            return nsArray
         } else {
             return nil
         }
     }
+    
+    func initSymptomValues(_ array: NSObject) -> [Symptom] {
+        let nsArray = array as! [String]
+        return nsArray.map({Symptom(rawValue: $0)!})
+    }
+}
+
+func customNavBarAppearance(appearance: String) -> UINavigationBarAppearance {
+    let customNavBarAppearance = UINavigationBarAppearance()
+    
+    switch appearance {
+    case "scrollEdgeAppearance":
+        // Apply a transparent background.
+        customNavBarAppearance.configureWithTransparentBackground()
+    case "standardAppearance":
+        // Apply a darkBlu background.
+        customNavBarAppearance.configureWithOpaqueBackground()
+        customNavBarAppearance.backgroundColor = UIColor(red: 41/255, green: 53/255, blue: 60/255, alpha: 0.9)
+    default:
+        break
+    }
+    
+    // Apply lightBlu colored normal titles.
+    customNavBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
+
+    // Apply lightBlu color to all the nav bar buttons.
+    let barButtonItemAppearance = UIBarButtonItemAppearance(style: .plain)
+    barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
+    barButtonItemAppearance.disabled.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
+    barButtonItemAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.label]
+    barButtonItemAppearance.focused.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
+    customNavBarAppearance.buttonAppearance = barButtonItemAppearance
+    customNavBarAppearance.backButtonAppearance = barButtonItemAppearance
+    customNavBarAppearance.doneButtonAppearance = barButtonItemAppearance
+    
+    return customNavBarAppearance
 }

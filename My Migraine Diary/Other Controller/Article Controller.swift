@@ -31,7 +31,6 @@ class ArticleController {
                         completion(.success(articleResponese.articles))
                     }catch{
                         completion(.failure(.jsonDecodeFailed))
-                        //completion(.failure(error))
                     }
                 } else {
                     completion(.failure(.responseFaild))

@@ -10,9 +10,10 @@ import CoreData
 import Charts
 
 class DiscoverViewController: UIViewController {
-
-   
-    @IBOutlet weak var seconedChart: UIView!
+    
+    @IBOutlet weak var myGrainView: UIStackView!
+    @IBOutlet var myGrainImages: [UIImageView]!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var chartView: CombinedChartView!
     @IBOutlet var articleTitles: [UILabel]!
     @IBOutlet var articleBtns: [UIButton]!
@@ -27,10 +28,12 @@ class DiscoverViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var migraineGreetingLabel: UILabel!
+    @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     
     var container: NSPersistentContainer!
     var records = [Record]()
     var articles = [Item]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +41,11 @@ class DiscoverViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
+        
         // last recordLabels
         records = container.getRecordsTimeAsc()
         if let record = records.first {
             updateLastRecordUI(record: record)
-            unfinRecordUI(show: record.stillGoing)
             
             // chart
             let averageTime = Chart.calculateAveTime(records: records)
@@ -52,8 +54,18 @@ class DiscoverViewController: UIViewController {
         } else {
             unfinRecordUI(show: false)
             noRecordUI()
+            
             let zeroArray = Array(repeating: 0.0, count: 12)
             Chart.convertCombines(dataEntryX: Chart.monthArray, dataEntryY: zeroArray, dataEntryZ: zeroArray, combineView: chartView)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let screenWidth = view.bounds.width
+        if screenWidth == 430 {
+            scrollViewHeight.constant = 1060
         }
     }
     
@@ -62,8 +74,8 @@ class DiscoverViewController: UIViewController {
         let bg = UIView()
         view.insertSubview(bg.bgGradient(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)), at: 0)
         
-        // secondChart hide
-        seconedChart.isHidden = true
+        // secondView hide
+        myGrainView.isHidden = true
         
         // fetch article
         ArticleController.shared.fetchArticle(language: "zh") { [weak self] result in
@@ -71,25 +83,32 @@ class DiscoverViewController: UIViewController {
             switch result {
             case .success(let articles):
                 self.articles = articles
+                print(self.articles, "zh")
             case .failure(let error):
                 print(error)
             }
         }
+        // 文章不滿兩則
         if articles.count < 2 {
             ArticleController.shared.fetchArticle(language: "en") { [weak self] result in
                 guard let self else { return }
                 switch result {
                 case .success(let articles):
                     self.articles.append(contentsOf: articles)
+                    print(self.articles, "en")
                     self.updateApiUI(articles: self.articles)
                 case .failure(let error):
                     print(error)
                 }
             }
         }
-        migraineGreetingLabel.text = MigraineGreeting.notMigraine.rawValue
+        
+        // segmentUI
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)!], for: .normal)
     }
     
+    // 沒有任何紀錄
     func noRecordUI(){
         scoreLabel.text = "?"
         durationLabel.text = ""
@@ -104,21 +123,21 @@ class DiscoverViewController: UIViewController {
         symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom)
         causeLabel.text = record.cause?.nsArrayToStringForLabel(record.cause)
         placeLabel.text = record.place ?? RecordStatusWording.noSelect.rawValue
+        
         let dateStr = DateFormatter().shortStyleTimeStr(time: record.startTime!)
         startTimeLabel.text = dateStr
         timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: Date.now, str: "目前經歷")
         durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!, stillGoing: record.stillGoing)
-        if record.stillGoing {
-            migraineGreetingLabel.text = MigraineGreeting.didMigraine.rawValue
-        } else {
-            migraineGreetingLabel.text = MigraineGreeting.notMigraine.rawValue
-        }
+        unfinRecordUI(show: record.stillGoing)
     }
     
+    // 文章圖片
     func updateApiUI(articles: [Item]){
         DispatchQueue.main.async {
             for i in 0...1 {
+                
                 self.articleTitles[i].text = articles[i].title
+                
                 // fetch article image
                 ArticleController.shared.fetchImage(url: articles[i].urlToImage) { image in
                     DispatchQueue.main.async {
@@ -129,19 +148,38 @@ class DiscoverViewController: UIViewController {
         }
     }
     
+    // 控制未完成紀錄大按鈕區塊顯示
     func unfinRecordUI(show: Bool) {
+        migraineGreetingLabel.text = show ? MigraineGreeting.didMigraine.rawValue : MigraineGreeting.notMigraine.rawValue
         timeOnBtnLabel.isHidden = !show
         endRecordBtn.isHidden = !show
         addBtn.isHidden = show
     }
-
+    
     @IBAction func controlSegment(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            chartView.isHidden = false
-            seconedChart.isHidden = true
-        } else {
-            chartView.isHidden = true
-            seconedChart.isHidden = false
+        
+        chartView.isHidden = sender.selectedSegmentIndex != 0
+        myGrainView.isHidden = sender.selectedSegmentIndex == 0
+        
+        if sender.selectedSegmentIndex == 1 {
+            
+            var imageStrs = [String]()
+            
+            for record in records {
+                
+                if let symptomArray = record.symptom?.initSymptomValues(record.symptom!) {
+                    imageStrs += symptomArray.map{ String(describing: $0) }
+                }
+                
+                if imageStrs.count > 32 {
+                    break
+                }
+            }
+            
+            // image & names who is the smallest one
+            for i in 0..<min(myGrainImages.count, imageStrs.count) {
+                myGrainImages[i].image = UIImage(named: imageStrs[i])
+            }
         }
     }
     
@@ -179,7 +217,7 @@ class DiscoverViewController: UIViewController {
             if sender == nil {
                 controller.title = "新增紀錄"
             } else {
-            // 更新紀錄
+                // 更新紀錄
                 controller.record = sender as? Record
                 controller.title = "更新紀錄"
             }
@@ -192,7 +230,6 @@ class DiscoverViewController: UIViewController {
 extension DiscoverViewController: RecordStatusTableViewControllerDelegate {
     func recordStatusTableViewControllerDelegate(_ controller: RecordStatusTableViewController, record: Record) {
         print(record.stillGoing, "stillGoing")
-        unfinRecordUI(show: record.stillGoing)
         updateLastRecordUI(record: record)
     }
 }

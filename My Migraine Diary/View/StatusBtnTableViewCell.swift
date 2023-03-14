@@ -16,22 +16,18 @@ class StatusBtnTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func configBtns(num: Int, view: UIView, title: [String], selectStrs: [String]?){
+    func configBtns(buttonCount: Int, view: UIView, title: [String], selectStrs: [String]?, imageNames: [String]){
         // 設定每個UIButton的大小和間距
         let buttonWidth = 74
         let buttonHeight = 60
         let spacing = 4
         let viewH = 100
 
-        // 要生成的UIButton數量
-        let buttonCount = num
-
         // 建立一個空的UIButton陣列
         var buttons = [UIButton]()
         
         // 建立樣式
         var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "heart")
         configuration.imagePlacement = .top
         configuration.imagePadding = 6
         
@@ -39,7 +35,7 @@ class StatusBtnTableViewCell: UITableViewCell {
         
         // 建立scrollView
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: y, width: 375, height: viewH))
-        let totalBtnsWidth = (buttonWidth + spacing) * num
+        let totalBtnsWidth = (buttonWidth + spacing) * buttonCount
         scrollView.contentSize = CGSize(width: totalBtnsWidth, height: viewH)
         scrollView.showsHorizontalScrollIndicator = false
         
@@ -51,11 +47,14 @@ class StatusBtnTableViewCell: UITableViewCell {
             // 建立文字
             let paragraph = NSMutableParagraphStyle()
             paragraph.alignment = .center
-            let attrStr = NSAttributedString(string: "\(title[i])", attributes: [
+            let attrStr = NSAttributedString(string: title[i], attributes: [
                 .font: UIFont.systemFont(ofSize: 12),
-                .foregroundColor: UIColor(named: "lightBlu")!,
+                .foregroundColor: UIColor.appColor(.lightBlu)!,
                 .paragraphStyle: paragraph
             ])
+            
+            // btn Image
+            configuration.image = UIImage(named: imageNames[i])
             
             // 建立新的UIButton
             let button = UIButton(configuration: configuration)
@@ -107,18 +106,6 @@ class StatusBtnTableViewCell: UITableViewCell {
         print(selectStrs)
     }
     
-    func showSelectedBtn(selectedTitles: [String], titles: [String]){
-        let set1 = Set(titles)
-        let set2 = Set(selectedTitles)
-
-        let intersection = set1.intersection(set2)
-        let subtracting = set1.subtracting(set2)
-        let commonStrings = Array(intersection)
-        let unselectStrings = Array(subtracting)
-        
-    }
-
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -28,6 +28,7 @@
 		8D796CA029A75997003782F4 /* Greeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D796C9F29A75997003782F4 /* Greeting.swift */; };
 		8D796CA329A7681F003782F4 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8D796CA229A7681F003782F4 /* FacebookLogin */; };
 		8D796CA729A778BD003782F4 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 8D796CA629A778BD003782F4 /* GoogleSignIn */; };
+		8D98DEF629B9D71700A38975 /* ColorSet Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D98DEF529B9D71700A38975 /* ColorSet Enum.swift */; };
 		8DA9049B29AF0CF8009063DF /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */; };
 		8DA9049E29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049C29B1BEAD009063DF /* MyMigraineDiary.xcdatamodeld */; };
 		8DA904A029B484D1009063DF /* Article Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9049F29B484D1009063DF /* Article Controller.swift */; };
@@ -59,6 +60,7 @@
 		8D779FE629A616F100894357 /* AllLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLogInViewController.swift; sourceTree = "<group>"; };
 		8D796C9F29A75997003782F4 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "My Migraine Diary.entitlements"; sourceTree = "<group>"; };
+		8D98DEF529B9D71700A38975 /* ColorSet Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSet Enum.swift"; sourceTree = "<group>"; };
 		8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		8DA9049D29B1BEAD009063DF /* MyMigraineDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyMigraineDiary.xcdatamodel; sourceTree = "<group>"; };
 		8DA9049F29B484D1009063DF /* Article Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article Controller.swift"; sourceTree = "<group>"; };
@@ -105,10 +107,10 @@
 		8D779FC629A4A4CC00894357 /* My Migraine Diary */ = {
 			isa = PBXGroup;
 			children = (
-				8DC4275229B97ACD00514D99 /* Model */,
-				8DC4275129B97A8700514D99 /* View */,
-				8D98DEF029B984A900A38975 /* Other Controller */,
-				8DC4275029B97A5E00514D99 /* View Controller */,
+				8D98DEF429B9925A00A38975 /* Model */,
+				8D98DEF329B9924400A38975 /* View */,
+				8D98DEF229B9922F00A38975 /* Other Controller */,
+				8D98DEF129B991F900A38975 /* View Controller */,
 				8D5132A329A8D5C7002DDB22 /* Main.storyboard */,
 				8D779FD229A4A4CD00894357 /* LaunchScreen.storyboard */,
 				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
@@ -123,15 +125,7 @@
 			path = "My Migraine Diary";
 			sourceTree = "<group>";
 		};
-		8D98DEF029B984A900A38975 /* Other Controller */ = {
-			isa = PBXGroup;
-			children = (
-				8DA9049F29B484D1009063DF /* Article Controller.swift */,
-			);
-			path = "Other Controller";
-			sourceTree = "<group>";
-		};
-		8DC4275029B97A5E00514D99 /* View Controller */ = {
+		8D98DEF129B991F900A38975 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				8DB2329829B6E2CB002C4ECD /* WebViewController.swift */,
@@ -144,20 +138,29 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
-		8DC4275129B97A8700514D99 /* View */ = {
+		8D98DEF229B9922F00A38975 /* Other Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8DA9049F29B484D1009063DF /* Article Controller.swift */,
+			);
+			path = "Other Controller";
+			sourceTree = "<group>";
+		};
+		8D98DEF329B9924400A38975 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
 				8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */,
 				8DA9049A29AF0CF8009063DF /* RecordTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		8DC4275229B97ACD00514D99 /* Model */ = {
+		8D98DEF429B9925A00A38975 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8D98DEF529B9D71700A38975 /* ColorSet Enum.swift */,
 				8D027B6F29AA0A740058FD32 /* Extension.swift */,
-				8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */,
 				8DA904A329B49AE8009063DF /* NetworkError.swift */,
 				8DC4274E29B740B500514D99 /* chart.swift */,
 				8DA904A129B4882F009063DF /* Article Struct.swift */,
@@ -269,6 +272,7 @@
 				8D5132B029A8FB69002DDB22 /* RecordStatusTableViewController.swift in Sources */,
 				8D779FC829A4A4CC00894357 /* AppDelegate.swift in Sources */,
 				8D779FE529A60F4100894357 /* SignInViewController.swift in Sources */,
+				8D98DEF629B9D71700A38975 /* ColorSet Enum.swift in Sources */,
 				8DC4274F29B740B500514D99 /* chart.swift in Sources */,
 				8D5132A829A8DB30002DDB22 /* DiscoverViewController.swift in Sources */,
 				8D796CA029A75997003782F4 /* Greeting.swift in Sources */,
