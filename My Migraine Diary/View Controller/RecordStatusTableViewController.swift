@@ -171,12 +171,12 @@ class RecordStatusTableViewController: UITableViewController {
     }
     
     func updateUI(){
-        symptomCell.configBtns(buttonCount: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map{"\($0.rawValue)"}, selectStrs: nil, imageNames: Symptom.allCases.map{"\($0)"})
-        signCell.configBtns(buttonCount: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map{"\($0.rawValue)"}, selectStrs: nil, imageNames: Sign.allCases.map{"\($0)"})
-        causeCell.configBtns(buttonCount: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map{"\($0.rawValue)"}, selectStrs: nil, imageNames: Cause.allCases.map{"\($0)"})
-        placeCell.configBtns(buttonCount: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map{"\($0.rawValue)"}, selectStrs: nil, imageNames: Place.allCases.map{"\($0)"})
-        medCell.configBtns(buttonCount: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map{"\($0.rawValue)"}, selectStrs: nil, imageNames: Med.allCases.map{"\($0)"})
-        effectCell.configBtns(buttonCount: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map{"\($0.rawValue)"}, selectStrs: nil, imageNames: MedEffect.allCases.map{"\($0)"})
+        symptomCell.configBtnsForMultiSelect(buttonCount: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map(\.rawValue), selectStrs: nil, imageNames: Symptom.allCases.map{"\($0)"})
+        signCell.configBtnsForMultiSelect(buttonCount: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map(\.rawValue), selectStrs: nil, imageNames: Sign.allCases.map{"\($0)"})
+        causeCell.configBtnsForMultiSelect(buttonCount: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map(\.rawValue), selectStrs: nil, imageNames: Cause.allCases.map{"\($0)"})
+        placeCell.configBtnsForSingleSelect(buttonCount: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map(\.rawValue), selectStr: nil, imageNames: Place.allCases.map{"\($0)"})
+        medCell.configBtnsForSingleSelect(buttonCount: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map(\.rawValue), selectStr: nil, imageNames: Med.allCases.map{"\($0)"})
+        effectCell.configBtnsForSingleSelect(buttonCount: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map(\.rawValue), selectStr: nil, imageNames: MedEffect.allCases.map{"\($0)"})
     }
     
     func showWrittenUI(record: Record){
@@ -190,12 +190,12 @@ class RecordStatusTableViewController: UITableViewController {
         startTime.date = record.startTime!
         quantityTextfield.text = "\(record.medQuantity)"
         quantitySegment.selectedSegmentIndex = Int(record.medUnit)
-        symptomCell.configBtns(buttonCount: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map(\.rawValue), selectStrs: record.symptom?.toStringArray(record.symptom), imageNames: Symptom.allCases.map{"\($0)"})
-        signCell.configBtns(buttonCount: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map(\.rawValue), selectStrs: record.sign?.toStringArray(record.sign), imageNames: Sign.allCases.map{"\($0)"})
-        causeCell.configBtns(buttonCount: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map(\.rawValue), selectStrs: record.cause?.toStringArray(record.cause), imageNames: Cause.allCases.map{"\($0)"})
-        placeCell.configBtns(buttonCount: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map(\.rawValue), selectStrs: [record.place ?? RecordStatusWording.noSelect.rawValue], imageNames: Place.allCases.map{"\($0)"})
-        medCell.configBtns(buttonCount: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map(\.rawValue), selectStrs: [record.med ?? RecordStatusWording.noSelect.rawValue], imageNames: Med.allCases.map{"\($0)"})
-        effectCell.configBtns(buttonCount: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map(\.rawValue), selectStrs: [record.medEffect ?? RecordStatusWording.noSelect.rawValue], imageNames: MedEffect.allCases.map{"\($0)"})
+        symptomCell.configBtnsForMultiSelect(buttonCount: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map(\.rawValue), selectStrs: record.symptom?.toStringArray(record.symptom), imageNames: Symptom.allCases.map{"\($0)"})
+        signCell.configBtnsForMultiSelect(buttonCount: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map(\.rawValue), selectStrs: record.sign?.toStringArray(record.sign), imageNames: Sign.allCases.map{"\($0)"})
+        causeCell.configBtnsForMultiSelect(buttonCount: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map(\.rawValue), selectStrs: record.cause?.toStringArray(record.cause), imageNames: Cause.allCases.map{"\($0)"})
+        placeCell.configBtnsForSingleSelect(buttonCount: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map(\.rawValue), selectStr: record.place ?? RecordStatusWording.noSelect.rawValue, imageNames: Place.allCases.map{"\($0)"})
+        medCell.configBtnsForSingleSelect(buttonCount: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map(\.rawValue), selectStr: record.med ?? RecordStatusWording.noSelect.rawValue, imageNames: Med.allCases.map{"\($0)"})
+        effectCell.configBtnsForSingleSelect(buttonCount: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map(\.rawValue), selectStr: record.medEffect ?? RecordStatusWording.noSelect.rawValue, imageNames: MedEffect.allCases.map{"\($0)"})
         
         // score btn 顯示
         score = Int(record.score)

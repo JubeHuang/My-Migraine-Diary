@@ -80,37 +80,32 @@ class DiscoverViewController: UIViewController {
         // fetch article
         let group = DispatchGroup()
         group.enter()
-        DispatchQueue.global().async {
-            ArticleController.shared.fetchArticle(language: "zh") { [weak self] result in
+        ArticleController.shared.fetchArticle(language: "zh") { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let articles):
+                self.articles = articles
+            case .failure(let error):
+                print(error)
+            }
+            group.leave()
+        }
+        group.wait()
+        
+        // 文章不滿兩則
+        group.enter()
+        if self.articles.count < 2 {
+            ArticleController.shared.fetchArticle(language: "en") { [weak self] result in
                 guard let self else { return }
                 switch result {
                 case .success(let articles):
-                    self.articles = articles
-                    print(self.articles, "zh")
+                    self.articles.append(contentsOf: articles)
+                    self.updateApiUI(articles: self.articles)
                 case .failure(let error):
                     print(error)
                 }
                 group.leave()
             }
-        }
-        
-        // 文章不滿兩則
-        group.enter()
-        DispatchQueue.global().async {
-            if self.articles.count < 2 {
-                ArticleController.shared.fetchArticle(language: "en") { [weak self] result in
-                    guard let self else { return }
-                    switch result {
-                    case .success(let articles):
-                        self.articles.append(contentsOf: articles)
-                        print(self.articles, "en")
-                        self.updateApiUI(articles: self.articles)
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-            }
-            group.leave()
         }
         
         
