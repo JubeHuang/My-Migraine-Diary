@@ -43,4 +43,4 @@
 </p>
 
 #### 統計圖表 & 頭痛相關文章
-<img src="https://github.com/JubeHuang/My-Migraine-Diary/blob/main/mockup.jpg" width="300">
+<img src="https://github.com/JubeHuang/My-Migraine-Diary/blob/main/mockup.png" width="300">
