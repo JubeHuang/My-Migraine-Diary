@@ -33,7 +33,7 @@ class DiscoverViewController: UIViewController {
     var container: NSPersistentContainer!
     var records = [Record]()
     var articles = [Item]()
-    
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +67,12 @@ class DiscoverViewController: UIViewController {
         if screenWidth == 430 {
             scrollViewHeight.constant = 1060
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        timer?.invalidate()
     }
     
     func updateBgUI(){
@@ -134,6 +140,14 @@ class DiscoverViewController: UIViewController {
         startTimeLabel.text = dateStr
         timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: Date.now, str: "目前經歷")
         durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!, stillGoing: record.stillGoing)
+        
+        // 30秒刷新一次經歷時間
+        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
+            
+            self.timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: Date.now, str: "目前經歷")
+            print("timer+1")
+        })
+        
         unfinRecordUI(show: record.stillGoing)
     }
     

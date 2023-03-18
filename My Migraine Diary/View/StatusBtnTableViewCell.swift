@@ -10,7 +10,7 @@ import UIKit
 class StatusBtnTableViewCell: UITableViewCell {
     
     var selectStrs = [String]()
-    lazy var selectStr = String()
+    var selectStr: String?
     
     // 設定每個UIButton的大小和間距
     let buttonWidth = 74
@@ -175,10 +175,12 @@ class StatusBtnTableViewCell: UITableViewCell {
         
         if selectButton == sender {
             selectStr = String()
+            print(selectStr, "selectBtn=sender")
             selectButton = nil
         } else {
             guard let text = sender.titleLabel?.text else { return }
             selectStr = text
+            print(selectStr)
             selectButton = sender
         }
         

@@ -42,6 +42,9 @@ class RecordStatusTableViewController: UITableViewController {
         navigationController!.navigationBar.scrollEdgeAppearance = customNavBarAppearance(appearance: "scrollEdgeAppearance")
         navigationController!.navigationBar.standardAppearance = customNavBarAppearance(appearance: "standardAppearance")
         
+        // textView done鍵 為取消鍵盤
+        note.delegate = self
+        
         // segment
         quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
         quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)!], for: .normal)
@@ -82,9 +85,10 @@ class RecordStatusTableViewController: UITableViewController {
         let start = startTime.date
         let end = stillGoingBtn.isSelected ? startTime.date : endTime.date
         let location = RecordStatusWording.noSelect.rawValue
-        let place = placeCell.selectStrs.first
-        let med = medCell.selectStrs.first
-        let effect = effectCell.selectStrs.first
+        let place = placeCell.selectStr ?? Place.notKnowPlace.rawValue
+        print(place, "save")
+        let med = medCell.selectStr ?? Med.noSelectMed.rawValue
+        let effect = effectCell.selectStr ?? MedEffect.noSelectMedEffect.rawValue
         let note = note.text
         let quantity = Double(quantityTextfield.text!)
         
@@ -102,9 +106,19 @@ class RecordStatusTableViewController: UITableViewController {
                 record.symptom = symptomCell.selectStrs as NSArray
                 record.sign = signCell.selectStrs as NSArray
                 record.cause = causeCell.selectStrs as NSArray
-                record.place = place
-                record.med = med
-                record.medEffect = effect
+                
+                if let placeCellSelectStr = placeCell.selectStr {
+                    record.place = placeCellSelectStr
+                }
+                
+                if let medCellSelectStr = medCell.selectStr {
+                    record.med = medCellSelectStr
+                }
+                
+                if let effectCelSelectStr = effectCell.selectStr {
+                    record.medEffect = effectCelSelectStr
+                }
+                
                 record.medQuantity = quantity ?? 0.0
                 record.note = note
                 record.stillGoing = stillGoingBtn.isSelected
@@ -139,6 +153,9 @@ class RecordStatusTableViewController: UITableViewController {
             present(alertController, animated: true)
         }
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func doneToCloseKeyboard(_ sender: Any) {
     }
     
     @IBAction func closeKeyBoard(_ sender: Any) {
@@ -183,6 +200,9 @@ class RecordStatusTableViewController: UITableViewController {
         // 持續btn
         stillGoingBtn.isSelected = record.stillGoing
         endTime.isEnabled = !record.stillGoing
+        if endTime.isEnabled {
+            endTime.date = record.endTime!
+        }
         stillBtn(stillGoingBtn, on: record.stillGoing)
         endTime.alpha = record.stillGoing ? 0.2 : 1.0
         
@@ -193,9 +213,9 @@ class RecordStatusTableViewController: UITableViewController {
         symptomCell.configBtnsForMultiSelect(buttonCount: Symptom.allCases.count, view: symptomCell.contentView, title: Symptom.allCases.map(\.rawValue), selectStrs: record.symptom?.toStringArray(record.symptom), imageNames: Symptom.allCases.map{"\($0)"})
         signCell.configBtnsForMultiSelect(buttonCount: Sign.allCases.count, view: signCell.contentView, title: Sign.allCases.map(\.rawValue), selectStrs: record.sign?.toStringArray(record.sign), imageNames: Sign.allCases.map{"\($0)"})
         causeCell.configBtnsForMultiSelect(buttonCount: Cause.allCases.count, view: causeCell.contentView, title: Cause.allCases.map(\.rawValue), selectStrs: record.cause?.toStringArray(record.cause), imageNames: Cause.allCases.map{"\($0)"})
-        placeCell.configBtnsForSingleSelect(buttonCount: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map(\.rawValue), selectStr: record.place ?? RecordStatusWording.noSelect.rawValue, imageNames: Place.allCases.map{"\($0)"})
-        medCell.configBtnsForSingleSelect(buttonCount: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map(\.rawValue), selectStr: record.med ?? RecordStatusWording.noSelect.rawValue, imageNames: Med.allCases.map{"\($0)"})
-        effectCell.configBtnsForSingleSelect(buttonCount: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map(\.rawValue), selectStr: record.medEffect ?? RecordStatusWording.noSelect.rawValue, imageNames: MedEffect.allCases.map{"\($0)"})
+        placeCell.configBtnsForSingleSelect(buttonCount: Place.allCases.count, view: placeCell.contentView, title: Place.allCases.map(\.rawValue), selectStr: record.place, imageNames: Place.allCases.map{"\($0)"})
+        medCell.configBtnsForSingleSelect(buttonCount: Med.allCases.count, view: medCell.contentView, title: Med.allCases.map(\.rawValue), selectStr: record.med, imageNames: Med.allCases.map{"\($0)"})
+        effectCell.configBtnsForSingleSelect(buttonCount: MedEffect.allCases.count, view: effectCell.contentView, title: MedEffect.allCases.map(\.rawValue), selectStr: record.medEffect, imageNames: MedEffect.allCases.map{"\($0)"})
         
         // score btn 顯示
         score = Int(record.score)
@@ -285,4 +305,15 @@ class RecordStatusTableViewController: UITableViewController {
      }
      */
     
+}
+
+// textview的done鍵取消換行
+extension RecordStatusTableViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 }

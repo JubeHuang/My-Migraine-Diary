@@ -18,19 +18,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Migraine Diary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ei-fG-MxN">
-                                <rect key="frame" x="110.33333333333333" y="466" width="172.66666666666669" height="25.333333333333314"/>
+                                <rect key="frame" x="110.33333333333333" y="477.66666666666669" width="172.66666666666669" height="25.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                 <color key="textColor" name="lightBlu"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="痛痛日記" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6I-Wr-6nK">
-                                <rect key="frame" x="155.66666666666666" y="503.33333333333326" width="81.666666666666657" height="24"/>
+                                <rect key="frame" x="155.66666666666666" y="515" width="81.666666666666657" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" name="lightBlu"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="RYV-9h-MhB">
-                                <rect key="frame" x="97.666666666666686" y="236" width="198" height="198"/>
+                                <rect key="frame" x="97.666666666666686" y="247.66666666666663" width="198" height="198"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -38,7 +38,7 @@
                         <constraints>
                             <constraint firstItem="2Ei-fG-MxN" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Cpp-UJ-opj"/>
                             <constraint firstItem="RYV-9h-MhB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Puf-mO-WpK"/>
-                            <constraint firstItem="RYV-9h-MhB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" multiplier="4:1" id="WcB-OS-y3A"/>
+                            <constraint firstItem="RYV-9h-MhB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" multiplier="21:5" id="WcB-OS-y3A"/>
                             <constraint firstItem="P6I-Wr-6nK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="c3k-Bg-ATZ"/>
                             <constraint firstItem="P6I-Wr-6nK" firstAttribute="top" secondItem="2Ei-fG-MxN" secondAttribute="bottom" constant="12" id="gBN-Ya-rvu"/>
                             <constraint firstItem="2Ei-fG-MxN" firstAttribute="top" secondItem="RYV-9h-MhB" secondAttribute="bottom" constant="32" id="sL2-el-Q0E"/>
