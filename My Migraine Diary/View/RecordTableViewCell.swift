@@ -31,8 +31,8 @@ class RecordTableViewCell: UITableViewCell {
         let dateStr = DateFormatter().shortStyleTimeStr(time: record.startTime!)
         timeLabel.text = dateStr
         placeLabel.text = record.place ?? RecordStatusWording.noSelect.rawValue
-        cause.text = record.cause?.nsArrayToStringForLabel(record.cause)
-        symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom)
+        cause.text = record.cause?.nsArrayToStringForUILabel(record.cause)
+        symptomLabel.text = record.symptom?.nsArrayToStringForUILabel(record.symptom)
         scoreLabel.text = "\(record.score)"
         durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!, stillGoing: record.stillGoing)
     }

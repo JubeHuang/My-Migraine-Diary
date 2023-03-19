@@ -14,7 +14,7 @@ class Chart {
     
     static let lightGrey = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
     
-    static func convertCombines(dataEntryX forX:[String],dataEntryY 線條圖: [Double], dataEntryZ 直條圖: [Double], combineView: CombinedChartView) {
+    static func convertCombinesChart(dataEntryX forX:[String],dataEntryY 線條圖: [Double], dataEntryZ 直條圖: [Double], combineView: CombinedChartView) {
         var dataEntries: [BarChartDataEntry] = []
         var dataEntrieszor: [ChartDataEntry] = []
         
@@ -40,6 +40,11 @@ class Chart {
         // cancel dot
         lineChartSet.drawCirclesEnabled = false
         lineChartSet.mode = .horizontalBezier
+        // 次數格式
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 1
+        let valuesNumberFormatter = ChartValueFormatter(numberFormatter: formatter)
+        lineChartSet.valueFormatter = valuesNumberFormatter
         lineChartSet.valueTextColor = UIColor.appColor(.pink)!
         lineChartSet.valueFont = .systemFont(ofSize: 9)
         
@@ -76,10 +81,6 @@ class Chart {
         // data textColor
         combineView.legend.textColor = .white
         
-        // empty state
-        combineView.noDataText = "目前尚無任何紀錄 快去新增吧！"
-        combineView.noDataTextColor = UIColor.appColor(.pink)!
-        
         // hidden grid
         combineView.xAxis.drawGridLinesEnabled = false
         combineView.leftAxis.drawGridLinesEnabled = false
@@ -88,7 +89,7 @@ class Chart {
         // 隱藏左邊欄位的資料
         combineView.leftAxis.enabled = false
         // animation
-        combineView.animate(xAxisDuration: 3.0, yAxisDuration: 3.0, easingOption: .easeInQuad)
+        combineView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInQuad)
         
         // 關閉 x 軸縮放
         combineView.scaleXEnabled = false
@@ -96,7 +97,65 @@ class Chart {
         combineView.scaleYEnabled = false
         // 關閉雙擊縮放
         combineView.doubleTapToZoomEnabled = false
+    }
+    
+    static func convertBarChart(dataEntryX forX:[String], dataEntryY 直條圖: [Double], barView: BarChartView) {
+        var dataEntries: [BarChartDataEntry] = []
         
+        for (i, v) in 直條圖.enumerated() {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: v, data: forX as AnyObject?)
+            dataEntries.append(dataEntry)
+        }
+        
+        let barChartSet = BarChartDataSet(entries: dataEntries, label: "誘因次數")
+        let barChartData = BarChartData(dataSets: [barChartSet])
+        
+        // 次數格式
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        let valuesNumberFormatter = ChartValueFormatter(numberFormatter: formatter)
+        
+        barChartSet.valueFormatter = valuesNumberFormatter
+        barChartSet.valueTextColor = UIColor.appColor(.pink)!
+        barChartSet.valueFont = .systemFont(ofSize: 9)
+        barChartSet.setColor(lightGrey)
+        
+        barView.data = barChartData
+        barView.notifyDataSetChanged()
+        
+        barView.xAxis.valueFormatter = IndexAxisValueFormatter(values: forX)
+        // x label custom
+        barView.xAxis.labelCount = forX.count
+        barView.xAxis.labelRotationAngle = -30
+        barView.xAxis.axisMinimum = 0
+        barView.xAxis.axisMaximum = Double(forX.count - 1)
+        barView.xAxis.granularity = 1
+        barView.xAxis.forceLabelsEnabled = true
+        barView.xAxis.granularityEnabled = true
+        
+        barView.leftAxis.granularity = 1
+        
+        // data textColor
+        barView.legend.textColor = .white
+        
+        // hidden grid
+        barView.xAxis.drawGridLinesEnabled = false
+        barView.leftAxis.drawGridLinesEnabled = false
+        barView.rightAxis.drawGridLinesEnabled = false
+        
+        // 隱藏左右邊欄位的資料
+        barView.leftAxis.enabled = false
+        barView.rightAxis.enabled = false
+        // animation
+        barView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInQuad)
+        
+        // 關閉 x 軸縮放
+        barView.scaleXEnabled = false
+        // 關閉 y 軸縮放
+        barView.scaleYEnabled = false
+        // 關閉雙擊縮放
+        barView.doubleTapToZoomEnabled = false
+        barChartSet.highlightEnabled = false
     }
     
     static func calculateAveTime(records: [Record]) -> [Double] {
@@ -136,5 +195,44 @@ class Chart {
         }
         
         return monthRecordCounts
+    }
+    
+    static func calculateCauseEachTimes(records: [Record]) -> [Double] {
+        
+        let titles = Cause.allCases.map(\.rawValue)
+        var causeEachTimes = Array(repeating: 0.0, count: titles.count)
+        
+        for record in records {
+            
+            if let causeStrs = record.cause?.toStringArray(record.cause) {
+                
+                for i in 0..<causeStrs.count{
+                    
+                    if let index = titles.firstIndex(of: causeStrs[i]) {
+                        
+                        causeEachTimes[index] += 1
+                    }
+                }
+            }
+        }
+        return causeEachTimes
+    }
+    
+}
+
+class ChartValueFormatter: NSObject, ValueFormatter {
+    fileprivate var numberFormatter: NumberFormatter?
+
+    convenience init(numberFormatter: NumberFormatter) {
+        self.init()
+        self.numberFormatter = numberFormatter
+    }
+
+    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        guard let numberFormatter = numberFormatter
+            else {
+                return ""
+        }
+        return numberFormatter.string(for: value)!
     }
 }

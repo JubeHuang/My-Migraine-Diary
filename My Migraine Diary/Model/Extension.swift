@@ -48,14 +48,14 @@ extension Calendar {
         }
     }
     
-    func getTimeDurationStr(start: Date, end: Date, str: String) -> String {
+    func getTimeDurationStr(start: Date, end: Date) -> String {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour, .minute], from: start, to: end)
         
         let hours = components.hour ?? 0
         let minutes = components.minute ?? 0
         
-        let timeDifference = String(format: str + " %d小時%d分", hours, minutes)
+        let timeDifference = String(format: "目前經歷 %d小時%d分", hours, minutes)
         
         return timeDifference
     }
@@ -74,7 +74,7 @@ extension Calendar {
 }
 
 extension NSObject {
-    func nsArrayToStringForLabel(_ array: NSObject?) -> String {
+    func nsArrayToStringForUILabel(_ array: NSObject?) -> String {
         guard let nsArray = array as? NSArray else { return RecordStatusWording.noSelect.rawValue }
         if nsArray.count > 1 {
             return "\(nsArray[0])+"

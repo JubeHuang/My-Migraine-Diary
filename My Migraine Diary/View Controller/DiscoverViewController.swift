@@ -11,8 +11,7 @@ import Charts
 
 class DiscoverViewController: UIViewController {
     
-    @IBOutlet weak var myGrainView: UIStackView!
-    @IBOutlet var myGrainImages: [UIImageView]!
+    @IBOutlet weak var causeBarChart: BarChartView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var chartView: CombinedChartView!
     @IBOutlet var articleTitles: [UILabel]!
@@ -50,13 +49,18 @@ class DiscoverViewController: UIViewController {
             // chart
             let averageTime = Chart.calculateAveTime(records: records)
             let recordTimes = Chart.calculateRecordTimes(records: records)
-            Chart.convertCombines(dataEntryX: Chart.monthArray, dataEntryY: averageTime, dataEntryZ: recordTimes, combineView: chartView)
+            Chart.convertCombinesChart(dataEntryX: Chart.monthArray, dataEntryY: averageTime, dataEntryZ: recordTimes, combineView: chartView)
+            
+            let causeEachTime = Chart.calculateCauseEachTimes(records: records)
+            Chart.convertBarChart(dataEntryX: Cause.allCases.map(\.rawValue), dataEntryY: causeEachTime, barView: causeBarChart)
         } else {
+            // 無紀錄
             unfinRecordUI(show: false)
             noRecordUI()
             
             let zeroArray = Array(repeating: 0.0, count: 12)
-            Chart.convertCombines(dataEntryX: Chart.monthArray, dataEntryY: zeroArray, dataEntryZ: zeroArray, combineView: chartView)
+            Chart.convertCombinesChart(dataEntryX: Chart.monthArray, dataEntryY: zeroArray, dataEntryZ: zeroArray, combineView: chartView)
+            Chart.convertBarChart(dataEntryX: Cause.allCases.map(\.rawValue), dataEntryY: zeroArray, barView: causeBarChart)
         }
     }
     
@@ -72,7 +76,10 @@ class DiscoverViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        timer?.invalidate()
+        guard let stillGoing = records.first?.stillGoing else { return }
+        if stillGoing {
+            timer?.invalidate()
+        }
     }
     
     func updateBgUI(){
@@ -81,7 +88,7 @@ class DiscoverViewController: UIViewController {
         view.insertSubview(bg.bgGradient(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)), at: 0)
         
         // secondView hide
-        myGrainView.isHidden = true
+        causeBarChart.isHidden = true
         
         // fetch article
         let group = DispatchGroup()
@@ -132,21 +139,13 @@ class DiscoverViewController: UIViewController {
     
     func updateLastRecordUI(record: Record) {
         scoreLabel.text = "\(record.score)"
-        symptomLabel.text = record.symptom?.nsArrayToStringForLabel(record.symptom)
-        causeLabel.text = record.cause?.nsArrayToStringForLabel(record.cause)
+        symptomLabel.text = record.symptom?.nsArrayToStringForUILabel(record.symptom)
+        causeLabel.text = record.cause?.nsArrayToStringForUILabel(record.cause)
         placeLabel.text = record.place ?? RecordStatusWording.noSelect.rawValue
         
         let dateStr = DateFormatter().shortStyleTimeStr(time: record.startTime!)
         startTimeLabel.text = dateStr
-        timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: Date.now, str: "目前經歷")
         durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!, stillGoing: record.stillGoing)
-        
-        // 30秒刷新一次經歷時間
-        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
-            
-            self.timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: Date.now, str: "目前經歷")
-            print("timer+1")
-        })
         
         unfinRecordUI(show: record.stillGoing)
     }
@@ -174,33 +173,25 @@ class DiscoverViewController: UIViewController {
         timeOnBtnLabel.isHidden = !show
         endRecordBtn.isHidden = !show
         addBtn.isHidden = show
+        
+        if show {
+            timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: (records.first?.startTime)!, end: Date.now)
+            
+            // 30秒刷新一次經歷時間
+            timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
+                
+                self.timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: (self.records.first?.startTime)!, end: Date.now)
+                print("timer+1")
+            })
+        }
     }
     
     @IBAction func controlSegment(_ sender: UISegmentedControl) {
         
         chartView.isHidden = sender.selectedSegmentIndex != 0
-        myGrainView.isHidden = sender.selectedSegmentIndex == 0
+        causeBarChart.isHidden = sender.selectedSegmentIndex == 0
         
-        if sender.selectedSegmentIndex == 1 {
-            
-            var imageStrs = [String]()
-            
-            for record in records {
-                
-                if let symptomArray = record.symptom?.initSymptomValues(record.symptom!) {
-                    imageStrs += symptomArray.map{ String(describing: $0) }
-                }
-                
-                if imageStrs.count > 32 {
-                    break
-                }
-            }
-            
-            // image & names who is the smallest one
-            for i in 0..<min(myGrainImages.count, imageStrs.count) {
-                myGrainImages[i].image = UIImage(named: imageStrs[i])
-            }
-        }
+        
     }
     
     @IBAction func addRecord(_ sender: Any) {
