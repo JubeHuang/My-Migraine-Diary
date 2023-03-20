@@ -1271,6 +1271,7 @@
                                     <outlet property="durationLabel" destination="acG-j4-QO3" id="kYG-NB-QLQ"/>
                                     <outlet property="placeLabel" destination="JwA-HQ-YUT" id="FQE-1R-S06"/>
                                     <outlet property="scoreLabel" destination="oc2-ek-2OI" id="lRb-Oi-QT4"/>
+                                    <outlet property="selectedBackgroundView" destination="vud-Dz-Mj0" id="fUP-SC-V8z"/>
                                     <outlet property="symptomLabel" destination="CYd-rw-go3" id="Nxw-nu-Q0W"/>
                                     <outlet property="timeLabel" destination="9Hj-oA-eXZ" id="mkx-Nx-M5f"/>
                                     <segue destination="hb9-e5-rCE" kind="show" identifier="showRecord" destinationCreationSelector="showRecord:" id="jmn-lx-OvV"/>
@@ -1287,6 +1288,12 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFZ-qA-DhP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="vud-Dz-Mj0">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="ntP-CO-zbZ"/>
+                    <color key="backgroundColor" red="0.15682343083286712" green="0.19604243799930074" blue="0.19415556864895103" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1885.5999999999999" y="820.19704433497543"/>
         </scene>
@@ -1393,7 +1400,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aAM-Db-Ecz"/>
+        <segue reference="jmn-lx-OvV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addEndTime" width="252" height="252"/>
