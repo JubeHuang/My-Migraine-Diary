@@ -146,6 +146,7 @@ class DiscoverViewController: UIViewController {
         let dateStr = DateFormatter().shortStyleTimeStr(time: record.startTime!)
         startTimeLabel.text = dateStr
         durationLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: record.endTime!, stillGoing: record.stillGoing)
+        timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: record.startTime!, end: Date.now)
         
         unfinRecordUI(show: record.stillGoing)
     }
@@ -175,7 +176,6 @@ class DiscoverViewController: UIViewController {
         addBtn.isHidden = show
         
         if show {
-            timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: (records.first?.startTime)!, end: Date.now)
             
             // 30秒刷新一次經歷時間
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in

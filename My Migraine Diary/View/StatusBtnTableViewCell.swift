@@ -83,15 +83,33 @@ class StatusBtnTableViewCell: UITableViewCell {
         let stackV = UIStackView(frame: CGRect(x: 0, y: 0, width: totalBtnsWidth, height: viewH))
         stackV.axis = .horizontal
         stackV.alignment = .top
-        stackV.distribution = .fillEqually
+        stackV.distribution = .equalSpacing
         stackV.spacing = CGFloat(spacing)
         
         for button in buttons {
             stackV.addArrangedSubview(button)
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: CGFloat(buttonWidth)).isActive = true
         }
         
         scrollView.addSubview(stackV)
         view.addSubview(scrollView)
+        
+        // add constraints
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        stackV.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: scrollView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: scrollView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: CGFloat(y)),
+            NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: CGFloat(viewH)),
+            NSLayoutConstraint(item: stackV, attribute: .leading, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackV, attribute: .trailing, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackV, attribute: .top, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackV, attribute: .bottom, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
+        ])
     }
     
     func configBtnsForSingleSelect(buttonCount: Int, view: UIView, title: [String], selectStr: String?, imageNames: [String]){
@@ -146,15 +164,33 @@ class StatusBtnTableViewCell: UITableViewCell {
         let stackV = UIStackView(frame: CGRect(x: 0, y: 0, width: totalBtnsWidth, height: viewH))
         stackV.axis = .horizontal
         stackV.alignment = .top
-        stackV.distribution = .fillEqually
+        stackV.distribution = .equalSpacing
         stackV.spacing = CGFloat(spacing)
         
         for button in buttons {
             stackV.addArrangedSubview(button)
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: CGFloat(buttonWidth)).isActive = true
         }
         
         scrollView.addSubview(stackV)
         view.addSubview(scrollView)
+        
+        // add constraints
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        stackV.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: scrollView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: scrollView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: CGFloat(y)),
+            NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: CGFloat(viewH)),
+            NSLayoutConstraint(item: stackV, attribute: .leading, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackV, attribute: .trailing, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackV, attribute: .top, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackV, attribute: .bottom, relatedBy: .equal, toItem: scrollView.contentLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0),
+        ])
     }
     
     @objc func buttonSelected(sender: UIButton) {
@@ -187,12 +223,6 @@ class StatusBtnTableViewCell: UITableViewCell {
         for button in buttons {
             button.isSelected = (selectButton == button)
         }
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

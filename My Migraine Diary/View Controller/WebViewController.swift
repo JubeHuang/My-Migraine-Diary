@@ -22,6 +22,8 @@ class WebViewController: UIViewController {
             let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
         }
+        
+        navigationController?.overrideUserInterfaceStyle = .dark
     }
     
 

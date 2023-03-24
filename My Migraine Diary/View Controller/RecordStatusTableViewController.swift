@@ -42,6 +42,10 @@ class RecordStatusTableViewController: UITableViewController {
         navigationController!.navigationBar.scrollEdgeAppearance = customNavBarAppearance(appearance: "scrollEdgeAppearance")
         navigationController!.navigationBar.standardAppearance = customNavBarAppearance(appearance: "standardAppearance")
         
+        // change datePicker text color
+        startTime.overrideUserInterfaceStyle = .dark
+        endTime.overrideUserInterfaceStyle = .dark
+        
         // textView done鍵 為取消鍵盤
         note.delegate = self
         
@@ -248,52 +252,7 @@ class RecordStatusTableViewController: UITableViewController {
         btn.configuration?.baseForegroundColor = on ? .appColor(.darkBlu) : .appColor(.bluishGrey1)
         btn.configuration?.background.strokeColor = on ? .appColor(.pink) : .appColor(.bluishGrey1)
     }
-    // MARK: - Table view data source
     
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     /*
      // MARK: - Navigation
