@@ -204,19 +204,16 @@ class StatusBtnTableViewCell: UITableViewCell {
                 selectStrs.remove(at: index)
             }
         }
-        print(selectStrs)
     }
     
     @objc func buttonSelectedSingle(sender: UIButton) {
         
         if selectButton == sender {
             selectStr = String()
-            print(selectStr, "selectBtn=sender")
             selectButton = nil
         } else {
             guard let text = sender.titleLabel?.text else { return }
             selectStr = text
-            print(selectStr)
             selectButton = sender
         }
         
