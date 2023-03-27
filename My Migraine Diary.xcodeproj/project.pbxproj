@@ -10,6 +10,8 @@
 		8D027B7029AA0A740058FD32 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B6F29AA0A740058FD32 /* Extension.swift */; };
 		8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */; };
 		8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */; };
+		8D35EF6329CFE8D00059198F /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8D35EF6229CFE8D00059198F /* GoogleMobileAds */; };
+		8D35EF9429D1E2C80059198F /* NativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D35EF9329D1E2C80059198F /* NativeAdView.xib */; };
 		8D5132A229A8D4DF002DDB22 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */; };
 		8D5132A429A8D5C7002DDB22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5132A329A8D5C7002DDB22 /* Main.storyboard */; };
 		8D5132A829A8DB30002DDB22 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */; };
@@ -44,6 +46,7 @@
 		8D027B6F29AA0A740058FD32 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
 		8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBtnTableViewCell.swift; sourceTree = "<group>"; };
+		8D35EF9329D1E2C80059198F /* NativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NativeAdView.xib; sourceTree = "<group>"; };
 		8D5132A129A8D4DF002DDB22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "My Migraine Diary/Base.lproj/LogIn.storyboard"; sourceTree = "<group>"; };
 		8D5132A329A8D5C7002DDB22 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 				8D779FDF29A4A74900894357 /* FirebaseAuth in Frameworks */,
 				8D779FE129A4A74900894357 /* FirebaseFirestoreSwift in Frameworks */,
 				8D779FE329A4A74900894357 /* FirebaseStorage in Frameworks */,
+				8D35EF6329CFE8D00059198F /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +116,7 @@
 				8D98DEF229B9922F00A38975 /* Other Controller */,
 				8D98DEF129B991F900A38975 /* View Controller */,
 				8D5132A329A8D5C7002DDB22 /* Main.storyboard */,
+				8D35EF9329D1E2C80059198F /* NativeAdView.xib */,
 				8D779FD229A4A4CD00894357 /* LaunchScreen.storyboard */,
 				8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */,
 				8D796CA429A77504003782F4 /* My Migraine Diary.entitlements */,
@@ -193,6 +198,7 @@
 				8D796CA229A7681F003782F4 /* FacebookLogin */,
 				8D796CA629A778BD003782F4 /* GoogleSignIn */,
 				8DC4274C29B70EE400514D99 /* Charts */,
+				8D35EF6229CFE8D00059198F /* GoogleMobileAds */,
 			);
 			productName = "My Migraine Diary";
 			productReference = 8D779FC429A4A4CC00894357 /* My Migraine Diary.app */;
@@ -227,6 +233,7 @@
 				8D796CA129A7681F003782F4 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				8D796CA529A778BD003782F4 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				8DC4274B29B70EE400514D99 /* XCRemoteSwiftPackageReference "Charts" */,
+				8D35EF6129CFE8D00059198F /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 8D779FC529A4A4CC00894357 /* Products */;
 			projectDirPath = "";
@@ -246,6 +253,7 @@
 				8D5132A429A8D5C7002DDB22 /* Main.storyboard in Resources */,
 				8D779FDC29A4A56E00894357 /* GoogleService-Info.plist in Resources */,
 				8D779FD129A4A4CD00894357 /* Assets.xcassets in Resources */,
+				8D35EF9429D1E2C80059198F /* NativeAdView.xib in Resources */,
 				8D5132A229A8D4DF002DDB22 /* LogIn.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +364,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -409,6 +418,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -430,7 +440,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -438,6 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "jubehuang.com.My-Migraine-Diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -460,7 +471,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,6 +479,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "jubehuang.com.My-Migraine-Diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -500,6 +512,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8D35EF6129CFE8D00059198F /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		8D779FDD29A4A74900894357 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -535,6 +555,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8D35EF6229CFE8D00059198F /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D35EF6129CFE8D00059198F /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		8D779FDE29A4A74900894357 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8D779FDD29A4A74900894357 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

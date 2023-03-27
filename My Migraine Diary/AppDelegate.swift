@@ -10,6 +10,7 @@ import CoreData
 import FirebaseCore
 import FacebookCore
 import GoogleSignIn
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        // googleAds
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        // launchScreen
         Thread.sleep(forTimeInterval: 3.0)
         return true
     }

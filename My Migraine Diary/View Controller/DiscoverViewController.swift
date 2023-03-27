@@ -8,9 +8,11 @@
 import UIKit
 import CoreData
 import Charts
+import GoogleMobileAds
 
 class DiscoverViewController: UIViewController {
     
+    @IBOutlet weak var adView: GADBannerView!
     @IBOutlet weak var causeBarChart: BarChartView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var chartView: CombinedChartView!
@@ -34,11 +36,18 @@ class DiscoverViewController: UIViewController {
     var articles = [Item]()
     var timer: Timer?
     
+    let adUnitID = "ca-app-pub-3940256099942544/2934735716" //test
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateBgUI()
+        
+        // googleAdsBanner
+        adView.adUnitID = adUnitID
+        adView.rootViewController = self
+        adView.load(GADRequest())
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         
         // last recordLabels
@@ -69,7 +78,7 @@ class DiscoverViewController: UIViewController {
         
         let screenWidth = view.bounds.width
         if screenWidth == 430 {
-            scrollViewHeight.constant = 1060
+            scrollViewHeight.constant = 1128
         }
     }
     
