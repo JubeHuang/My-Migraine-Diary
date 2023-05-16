@@ -17,7 +17,7 @@ enum ColorSet: String {
 }
 
 extension UIColor {
-    static func appColor(_ name: ColorSet) -> UIColor? {
-             return UIColor(named: name.rawValue)
+    static func appColor(_ name: ColorSet) -> UIColor {
+        return UIColor(named: name.rawValue) ?? .white
     }
 }

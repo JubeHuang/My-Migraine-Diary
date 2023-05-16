@@ -56,7 +56,7 @@ class RecordStatusTableViewController: UITableViewController {
         
         // segment
         quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
-        quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)!], for: .normal)
+        quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)], for: .normal)
         
         if let record {
             showWrittenUI(record: record)

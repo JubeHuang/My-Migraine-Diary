@@ -51,7 +51,7 @@ class StatusBtnTableViewCell: UITableViewCell {
             paragraph.alignment = .center
             let attrStr = NSAttributedString(string: title[i], attributes: [
                 .font: UIFont.systemFont(ofSize: 12),
-                .foregroundColor: UIColor.appColor(.lightBlu)!,
+                .foregroundColor: UIColor.appColor(.lightBlu),
                 .paragraphStyle: paragraph
             ])
             
@@ -135,7 +135,7 @@ class StatusBtnTableViewCell: UITableViewCell {
             paragraph.alignment = .center
             let attrStr = NSAttributedString(string: title[i], attributes: [
                 .font: UIFont.systemFont(ofSize: 12),
-                .foregroundColor: UIColor.appColor(.lightBlu)!,
+                .foregroundColor: UIColor.appColor(.lightBlu),
                 .paragraphStyle: paragraph
             ])
             

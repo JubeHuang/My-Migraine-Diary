@@ -133,7 +133,7 @@ class DiscoverViewController: UIViewController {
         
         // segmentUI
         segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
-        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)!], for: .normal)
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)], for: .normal)
     }
     
     // 沒有任何紀錄
@@ -198,9 +198,7 @@ class DiscoverViewController: UIViewController {
     @IBAction func controlSegment(_ sender: UISegmentedControl) {
         
         chartView.isHidden = sender.selectedSegmentIndex != 0
-        causeBarChart.isHidden = sender.selectedSegmentIndex == 0
-        
-        
+        causeBarChart.isHidden = sender.selectedSegmentIndex == 0        
     }
     
     @IBAction func addRecord(_ sender: Any) {

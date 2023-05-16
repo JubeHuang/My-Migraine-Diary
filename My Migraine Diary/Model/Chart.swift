@@ -45,16 +45,16 @@ class Chart {
         formatter.minimumFractionDigits = 1
         let valuesNumberFormatter = ChartValueFormatter(numberFormatter: formatter)
         lineChartSet.valueFormatter = valuesNumberFormatter
-        lineChartSet.valueTextColor = UIColor.appColor(.pink)!
+        lineChartSet.valueTextColor = UIColor.appColor(.pink)
         lineChartSet.valueFont = .systemFont(ofSize: 9)
         
         // line color & width
-        lineChartSet.setColor(UIColor.appColor(.pink)!)
+        lineChartSet.setColor(UIColor.appColor(.pink))
         lineChartSet.lineWidth = 2
         
         // make gradient
         lineChartSet.drawFilledEnabled = true
-        lineChartSet.fillColor = UIColor.appColor(.pink)!
+        lineChartSet.fillColor = UIColor.appColor(.pink)
         lineChartSet.fillAlpha = 1
         // 漸變顏色數組
         let gradientColors = [CGColor(red: 242/255, green: 169/255, blue: 124/255, alpha: 1), CGColor(red: 242/255, green: 169/255, blue: 124/255, alpha: 0.1)] as CFArray
@@ -116,7 +116,7 @@ class Chart {
         let valuesNumberFormatter = ChartValueFormatter(numberFormatter: formatter)
         
         barChartSet.valueFormatter = valuesNumberFormatter
-        barChartSet.valueTextColor = UIColor.appColor(.pink)!
+        barChartSet.valueTextColor = UIColor.appColor(.pink)
         barChartSet.valueFont = .systemFont(ofSize: 9)
         barChartSet.setColor(lightGrey)
         
