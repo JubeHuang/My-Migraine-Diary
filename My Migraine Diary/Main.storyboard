@@ -916,25 +916,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="144"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="124" translatesAutoresizingMaskIntoConstraints="NO" id="au0-pF-Jgo">
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="124" translatesAutoresizingMaskIntoConstraints="NO" id="au0-pF-Jgo">
                                                     <rect key="frame" x="16" y="16" width="343" height="34"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="服用藥物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4V-bg-oEh">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服用藥物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4V-bg-oEh">
                                                             <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FUy-0N-Bfe">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FUy-0N-Bfe">
                                                             <rect key="frame" x="189.33333333333337" y="0.0" width="153.66666666666663" height="34"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="劑量 ex: 1" textAlignment="right" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="tAp-sW-q0V">
+                                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="劑量 ex: 1" textAlignment="right" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="tAp-sW-q0V">
                                                                     <rect key="frame" x="0.0" y="0.0" width="80.666666666666671" height="34"/>
                                                                     <color key="backgroundColor" name="bluishGrey"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                                                 </textField>
-                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g39-Fc-AgL">
+                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g39-Fc-AgL">
                                                                     <rect key="frame" x="88.666666666666657" y="0.0" width="65" height="35"/>
                                                                     <segments>
                                                                         <segment title="顆"/>
@@ -945,7 +945,7 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zpp-aH-5x2">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpp-aH-5x2">
                                                     <rect key="frame" x="16" y="143" width="343" height="1"/>
                                                     <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -1048,8 +1048,17 @@
                                             </connections>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="138" id="udz-b7-BJd" userLabel="NativeAd">
+                                        <rect key="frame" x="0.0" y="1240" width="375" height="138"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="udz-b7-BJd" id="dCy-EZ-12S">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.16078431369999999" green="0.20784313730000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="132" id="16C-wc-YPK">
-                                        <rect key="frame" x="0.0" y="1240" width="375" height="132"/>
+                                        <rect key="frame" x="0.0" y="1378" width="375" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="16C-wc-YPK" id="9jp-kr-s1Y">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
@@ -1120,6 +1129,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adPlaceHolder" destination="dCy-EZ-12S" id="N8j-3Y-2I2"/>
                         <outlet property="causeCell" destination="74B-ub-YUe" id="djh-BL-7SU"/>
                         <outlet property="effectCell" destination="S1Y-0d-jo0" id="ijE-xp-0tB"/>
                         <outlet property="endTime" destination="7Bf-d9-sFf" id="E0u-RE-0Lc"/>

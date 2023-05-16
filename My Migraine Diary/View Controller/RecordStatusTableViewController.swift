@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 protocol RecordStatusTableViewControllerDelegate: AnyObject {
     func recordStatusTableViewControllerDelegate(_ controller: RecordStatusTableViewController, record : Record)
@@ -14,6 +15,7 @@ protocol RecordStatusTableViewControllerDelegate: AnyObject {
 
 class RecordStatusTableViewController: UITableViewController {
     
+    @IBOutlet weak var adPlaceHolder: UIView!
     @IBOutlet weak var stillGoingBtn: UIButton!
     @IBOutlet weak var note: UITextView!
     @IBOutlet weak var endTime: UIDatePicker!
@@ -34,6 +36,9 @@ class RecordStatusTableViewController: UITableViewController {
     weak var delegate: RecordStatusTableViewControllerDelegate?
     var record: Record?
     var screenWidth = 0
+    var adLoader: GADAdLoader!
+    var nativeAdView: GADNativeAdView!
+    let adUnitID = "ca-app-pub-3940256099942544/3986624511" //test
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +63,20 @@ class RecordStatusTableViewController: UITableViewController {
         } else {
             updateUI()
         }
+        
+        // googleAds
+        guard let nibObjects = Bundle.main.loadNibNamed("NativeAdView", owner: nil, options: nil),
+              let adView = nibObjects.first as? GADNativeAdView
+        else {
+          assert(false, "Could not load nib file for adView")
+        }
+        nativeAdView = adView
+        adPlaceHolder.addSubview(nativeAdView)
+        adLoader = GADAdLoader(
+          adUnitID: adUnitID, rootViewController: self,
+          adTypes: [.native], options: nil)
+        adLoader.delegate = self
+        adLoader.load(GADRequest())
     }
     
     override func viewDidLayoutSubviews() {
@@ -275,4 +294,25 @@ extension RecordStatusTableViewController: UITextViewDelegate {
         }
         return true
     }
+}
+
+extension RecordStatusTableViewController: GADNativeAdLoaderDelegate {
+    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
+        // config of ad
+        print("configAd")
+        (nativeAdView.headlineView as? UILabel)?.text = nativeAd.headline
+        (nativeAdView.bodyView as? UILabel)?.text = nativeAd.body
+        nativeAdView.bodyView?.isHidden = nativeAd.body == nil
+        nativeAdView.mediaView?.mediaContent = nativeAd.mediaContent
+        nativeAdView.iconView?.isHidden = nativeAd.icon == nil
+        (nativeAdView.advertiserView as? UILabel)?.text = nativeAd.advertiser
+        nativeAdView.advertiserView?.isHidden = nativeAd.advertiser == nil
+        nativeAdView.nativeAd = nativeAd
+    }
+    
+    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
+        print(error)
+    }
+    
+    
 }
