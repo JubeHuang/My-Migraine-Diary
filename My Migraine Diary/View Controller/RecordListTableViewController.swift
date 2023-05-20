@@ -25,6 +25,7 @@ class RecordListTableViewController: UITableViewController {
         // statusBar
         navigationController!.navigationBar.scrollEdgeAppearance = customNavBarAppearance(appearance: "scrollEdgeAppearance")
         navigationController!.navigationBar.standardAppearance = customNavBarAppearance(appearance: "standardAppearance")
+        print("abc")
     }
     
     override func viewWillAppear(_ animated: Bool) {
