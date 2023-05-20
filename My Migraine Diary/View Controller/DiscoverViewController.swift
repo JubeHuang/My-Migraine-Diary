@@ -31,8 +31,6 @@ class DiscoverViewController: UIViewController {
     @IBOutlet weak var migraineGreetingLabel: UILabel!
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     
-    var container: NSPersistentContainer!
-    var records = [Record]()
     var articles = [Item]()
     var timer: Timer?
     
@@ -50,17 +48,15 @@ class DiscoverViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         
-        // last recordLabels
-        records = container.getRecordsTimeAsc()
-        if let record = records.first {
+        if let record = StoreDataManager.shared.latestRecord {
             updateLastRecordUI(record: record)
             
             // chart
-            let averageTime = Chart.calculateAveTime(records: records)
-            let recordTimes = Chart.calculateRecordTimes(records: records)
+            let averageTime = Chart.calculateAveTime(records: StoreDataManager.shared.records)
+            let recordTimes = Chart.calculateRecordTimes(records: StoreDataManager.shared.records)
             Chart.convertCombinesChart(dataEntryX: Chart.monthArray, dataEntryY: averageTime, dataEntryZ: recordTimes, combineView: chartView)
             
-            let causeEachTime = Chart.calculateCauseEachTimes(records: records)
+            let causeEachTime = Chart.calculateCauseEachTimes(records: StoreDataManager.shared.records)
             Chart.convertBarChart(dataEntryX: Cause.allCases.map(\.rawValue), dataEntryY: causeEachTime, barView: causeBarChart)
         } else {
             // 無紀錄
@@ -85,7 +81,7 @@ class DiscoverViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        guard let stillGoing = records.first?.stillGoing else { return }
+        guard let stillGoing = StoreDataManager.shared.latestRecord?.stillGoing else { return }
         if stillGoing {
             timer?.invalidate()
         }
@@ -189,7 +185,7 @@ class DiscoverViewController: UIViewController {
             // 30秒刷新一次經歷時間
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
                 
-                self.timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: (self.records.first?.startTime)!, end: Date.now)
+                self.timeOnBtnLabel.text = Calendar(identifier: .chinese).getTimeDurationStr(start: (StoreDataManager.shared.latestRecord?.startTime)!, end: Date.now)
                 print("timer+1")
             })
         }
@@ -206,7 +202,7 @@ class DiscoverViewController: UIViewController {
     }
     
     @IBAction func refineRecord(_ sender: Any) {
-        performSegue(withIdentifier: "showRecord", sender: records.first)
+        performSegue(withIdentifier: "showRecord", sender: StoreDataManager.shared.latestRecord)
     }
     
     @IBAction func tapArticle(_ sender: UIButton) {
@@ -230,24 +226,11 @@ class DiscoverViewController: UIViewController {
             // 前往紀錄頁
         case "showRecord":
             let controller = segue.destination as! RecordStatusTableViewController
-            controller.delegate = self
-            // 新增紀錄
-            if sender == nil {
-                controller.title = "新增紀錄"
-            } else {
-                // 更新紀錄
-                controller.record = sender as? Record
-                controller.title = "更新紀錄"
-            }
+            
+            controller.title = sender == nil ? "新增紀錄" : "更新紀錄"
+            controller.record = sender == nil ? nil : StoreDataManager.shared.latestRecord
         default:
             break
         }
-    }
-}
-
-extension DiscoverViewController: RecordStatusTableViewControllerDelegate {
-    func recordStatusTableViewControllerDelegate(_ controller: RecordStatusTableViewController, record: Record) {
-        print(record.stillGoing, "stillGoing")
-        updateLastRecordUI(record: record)
     }
 }

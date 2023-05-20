@@ -12,6 +12,7 @@
 		8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */; };
 		8D35EF6329CFE8D00059198F /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8D35EF6229CFE8D00059198F /* GoogleMobileAds */; };
 		8D35EF9429D1E2C80059198F /* NativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D35EF9329D1E2C80059198F /* NativeAdView.xib */; };
+		8D3D5B3D2A166D9B00F18224 /* StoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D5B3C2A166D9B00F18224 /* StoreDataManager.swift */; };
 		8D5132A229A8D4DF002DDB22 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5132A029A8D4DF002DDB22 /* LogIn.storyboard */; };
 		8D5132A429A8D5C7002DDB22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5132A329A8D5C7002DDB22 /* Main.storyboard */; };
 		8D5132A829A8DB30002DDB22 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */; };
@@ -47,6 +48,7 @@
 		8D027B7129AA17EB0058FD32 /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
 		8D027B7529AA41D40058FD32 /* StatusBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBtnTableViewCell.swift; sourceTree = "<group>"; };
 		8D35EF9329D1E2C80059198F /* NativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NativeAdView.xib; sourceTree = "<group>"; };
+		8D3D5B3C2A166D9B00F18224 /* StoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDataManager.swift; sourceTree = "<group>"; };
 		8D5132A129A8D4DF002DDB22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "My Migraine Diary/Base.lproj/LogIn.storyboard"; sourceTree = "<group>"; };
 		8D5132A329A8D5C7002DDB22 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8D5132A729A8DB2F002DDB22 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8DA9049F29B484D1009063DF /* Article Controller.swift */,
+				8D3D5B3C2A166D9B00F18224 /* StoreDataManager.swift */,
 			);
 			path = "Other Controller";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				8DA904A429B49AE8009063DF /* NetworkError.swift in Sources */,
 				8DB2329929B6E2CB002C4ECD /* WebViewController.swift in Sources */,
+				8D3D5B3D2A166D9B00F18224 /* StoreDataManager.swift in Sources */,
 				8D027B7629AA41D40058FD32 /* StatusBtnTableViewCell.swift in Sources */,
 				8DA904A029B484D1009063DF /* Article Controller.swift in Sources */,
 				8D027B7229AA17EB0058FD32 /* CustomTabbar.swift in Sources */,
