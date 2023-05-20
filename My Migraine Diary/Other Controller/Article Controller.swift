@@ -10,7 +10,7 @@ import UIKit
 class ArticleController {
     static let shared = ArticleController()
     
-    let baseUrl = URL(string: "https://newsapi.org/v2/everything?")
+    private let baseUrl = URL(string: "https://newsapi.org/v2/everything?")
     
     func fetchArticle(language: String, completion: @escaping (Result<[Item], NetworkError>) -> Void) {
         guard let baseUrl else { return }

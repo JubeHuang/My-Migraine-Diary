@@ -9,10 +9,6 @@ import UIKit
 import CoreData
 import GoogleMobileAds
 
-protocol RecordStatusTableViewControllerDelegate: AnyObject {
-    func recordStatusTableViewControllerDelegate(_ controller: RecordStatusTableViewController, record : Record)
-}
-
 class RecordStatusTableViewController: UITableViewController {
     
     @IBOutlet weak var adPlaceHolder: UIView!
@@ -33,7 +29,6 @@ class RecordStatusTableViewController: UITableViewController {
     
     var score = 0
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    weak var delegate: RecordStatusTableViewControllerDelegate?
     var record: Record?
     var screenWidth = 0
     var adLoader: GADAdLoader!
@@ -56,7 +51,7 @@ class RecordStatusTableViewController: UITableViewController {
         
         // segment
         quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
-        quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)!], for: .normal)
+        quantitySegment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.appColor(.bluishGrey2)], for: .normal)
         
         if let record {
             showWrittenUI(record: record)
@@ -91,7 +86,7 @@ class RecordStatusTableViewController: UITableViewController {
         endTime.isEnabled = !sender.isSelected
         stillGoingBtn.isSelected = sender.isSelected
         
-        stillBtn(sender, on: sender.isSelected)
+        stillBtn(sender, isOn: sender.isSelected)
         endTime.alpha = sender.isSelected ? 0.2 : 1.0
     }
     
@@ -104,6 +99,17 @@ class RecordStatusTableViewController: UITableViewController {
     }
     
     @IBAction func saveStatus(_ sender: Any) {
+        
+        if record != StoreDataManager.shared.latestRecord {
+            if stillGoingBtn.isSelected, StoreDataManager.shared.latestRecord?.stillGoing == true {
+                stillGoingBtn.isSelected = false
+                stillBtn(stillGoingBtn, isOn: false)
+                
+                let stillGoingTime = DateFormatter().shortStyleTimeStr(time:(StoreDataManager.shared.latestRecord?.startTime)!)
+                alert(title: "Oops!", message: "\(stillGoingTime)\n還有持續進行的頭痛窩", action: "我看看")
+                return
+            }
+        }
         
         let start = startTime.date
         let end = stillGoingBtn.isSelected ? startTime.date : endTime.date
@@ -150,8 +156,7 @@ class RecordStatusTableViewController: UITableViewController {
                     record.medQuantity = quantity
                 }
                 
-                appDelegate.persistentContainer.saveContext()
-                delegate?.recordStatusTableViewControllerDelegate(self, record: record)
+                StoreDataManager.shared.container.saveContext()
             } else {
                 // save new record
                 save(start: start, end: end, location: location, score: score, symptom: symptomCell.selectStrs, sign: signCell.selectStrs, cause: causeCell.selectStrs, place: place, med: med, medEffect: effect, medQuantity: quantity, note: note, quantitySegment: quantitySegment.selectedSegmentIndex)
@@ -167,7 +172,7 @@ class RecordStatusTableViewController: UITableViewController {
                 guard let self else { return }
                 let context = self.appDelegate.persistentContainer.viewContext
                 context.delete(record)
-                self.appDelegate.persistentContainer.saveContext()
+                StoreDataManager.shared.container.saveContext()
                 self.navigationController?.popViewController(animated: true)
             }
             let actionCancel = UIAlertAction(title: "取消", style: .cancel)
@@ -205,9 +210,7 @@ class RecordStatusTableViewController: UITableViewController {
         statusRecord.stillGoing = stillGoingBtn.isSelected
         statusRecord.medUnit = Int16(quantitySegment)
         
-        delegate?.recordStatusTableViewControllerDelegate(self, record: statusRecord)
-        
-        appDelegate.persistentContainer.saveContext()
+        StoreDataManager.shared.container.saveContext()
     }
     
     func updateUI(){
@@ -226,7 +229,7 @@ class RecordStatusTableViewController: UITableViewController {
         if endTime.isEnabled {
             endTime.date = record.endTime!
         }
-        stillBtn(stillGoingBtn, on: record.stillGoing)
+        stillBtn(stillGoingBtn, isOn: record.stillGoing)
         endTime.alpha = record.stillGoing ? 0.2 : 1.0
         
         // 其餘按鈕顯示
@@ -266,10 +269,10 @@ class RecordStatusTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
     
-    func stillBtn(_ btn: UIButton, on: Bool){
-        btn.configuration?.background.backgroundColor = on ? .appColor(.pink) : .clear
-        btn.configuration?.baseForegroundColor = on ? .appColor(.darkBlu) : .appColor(.bluishGrey1)
-        btn.configuration?.background.strokeColor = on ? .appColor(.pink) : .appColor(.bluishGrey1)
+    func stillBtn(_ btn: UIButton, isOn: Bool){
+        btn.configuration?.background.backgroundColor = isOn ? .appColor(.pink) : .clear
+        btn.configuration?.baseForegroundColor = isOn ? .appColor(.darkBlu) : .appColor(.bluishGrey1)
+        btn.configuration?.background.strokeColor = isOn ? .appColor(.pink) : .appColor(.bluishGrey1)
     }
     
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="goC-K7-6lJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="goC-K7-6lJ">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -916,25 +916,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="144"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="124" translatesAutoresizingMaskIntoConstraints="NO" id="au0-pF-Jgo">
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="124" translatesAutoresizingMaskIntoConstraints="NO" id="au0-pF-Jgo">
                                                     <rect key="frame" x="16" y="16" width="343" height="34"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服用藥物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4V-bg-oEh">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="服用藥物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4V-bg-oEh">
                                                             <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FUy-0N-Bfe">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FUy-0N-Bfe">
                                                             <rect key="frame" x="189.33333333333337" y="0.0" width="153.66666666666663" height="34"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="劑量 ex: 1" textAlignment="right" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="tAp-sW-q0V">
+                                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="劑量 ex: 1" textAlignment="right" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="tAp-sW-q0V">
                                                                     <rect key="frame" x="0.0" y="0.0" width="80.666666666666671" height="34"/>
                                                                     <color key="backgroundColor" name="bluishGrey"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                                                 </textField>
-                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g39-Fc-AgL">
+                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g39-Fc-AgL">
                                                                     <rect key="frame" x="88.666666666666657" y="0.0" width="65" height="35"/>
                                                                     <segments>
                                                                         <segment title="顆"/>
@@ -945,7 +945,7 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpp-aH-5x2">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zpp-aH-5x2">
                                                     <rect key="frame" x="16" y="143" width="343" height="1"/>
                                                     <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -1052,7 +1052,7 @@
                                         <rect key="frame" x="0.0" y="1240" width="375" height="138"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="udz-b7-BJd" id="dCy-EZ-12S">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.16078431369999999" green="0.20784313730000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
@@ -1370,29 +1370,10 @@
                     <view key="view" contentMode="scaleToFill" id="RPB-bw-uYy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Kh-mw-g7f">
-                                <rect key="frame" x="0.0" y="91" width="375" height="638"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="TEt-r6-DmE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6Kh-mw-g7f" firstAttribute="leading" secondItem="TEt-r6-DmE" secondAttribute="leading" id="WXc-7z-uXl"/>
-                            <constraint firstItem="6Kh-mw-g7f" firstAttribute="trailing" secondItem="TEt-r6-DmE" secondAttribute="trailing" id="ZIR-AB-6ak"/>
-                            <constraint firstItem="6Kh-mw-g7f" firstAttribute="top" secondItem="TEt-r6-DmE" secondAttribute="top" id="cOC-hi-7IY"/>
-                            <constraint firstItem="6Kh-mw-g7f" firstAttribute="bottom" secondItem="TEt-r6-DmE" secondAttribute="bottom" id="uYh-X1-0mz"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TTs-wD-ftv"/>
-                    <connections>
-                        <outlet property="webView" destination="6Kh-mw-g7f" id="jZk-rW-zrI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcb-Zf-I6A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1433,7 +1414,7 @@
                     <tabBarItem key="tabBarItem" title="探索" image="magnifyingglass" catalog="system" id="kKJ-0Y-f5h"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mq7-5v-GkE">
-                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1452,7 +1433,7 @@
                     <tabBarItem key="tabBarItem" title="紀錄" image="list.bullet.clipboard" catalog="system" id="YVK-Ka-wWv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L3O-7d-AFH">
-                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

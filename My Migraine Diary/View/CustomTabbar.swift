@@ -11,11 +11,11 @@ class CustomTabbar: UITabBarController {
     override func viewDidLoad() {
         //setting select & unselect tabBtn color
         let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
-        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.appColor(.bluishGrey1)!]
-        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.appColor(.bluishGrey1)
-        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.appColor(.lightBlu)
-        tabBarAppearance.backgroundColor = UIColor.appColor(.darkBlu)
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)]
+        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.appColor(.bluishGrey1)]
+        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = .appColor(.bluishGrey1)
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = .appColor(.lightBlu)
+        tabBarAppearance.backgroundColor = .appColor(.darkBlu)
         tabBar.standardAppearance = tabBarAppearance
         tabBar.scrollEdgeAppearance = tabBarAppearance
     }

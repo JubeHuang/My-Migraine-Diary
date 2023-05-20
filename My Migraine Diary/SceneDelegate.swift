@@ -5,7 +5,7 @@
 //  Created by Jube on 2023/2/21.
 //
 
-import UIKit
+//import UIKit
 import FacebookCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -13,25 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        let tabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! CustomTabbar
-        if let navControllers = tabBar.viewControllers as? [UINavigationController] {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            navControllers.forEach { navC in
-                switch navC.viewControllers[0] {
-                case let navC as DiscoverViewController:
-                    navC.container = appDelegate.persistentContainer
-                case let navC as RecordListTableViewController:
-                    navC.container = appDelegate.persistentContainer
-                default:
-                    break
-                }
-            }
-        }
-        window?.rootViewController = tabBar
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -60,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        StoreDataManager.shared.container.saveContext()
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -72,4 +54,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

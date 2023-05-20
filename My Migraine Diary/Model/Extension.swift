@@ -115,14 +115,14 @@ func customNavBarAppearance(appearance: String) -> UINavigationBarAppearance {
     }
     
     // Apply lightBlu colored normal titles.
-    customNavBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
+    customNavBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)]
 
     // Apply lightBlu color to all the nav bar buttons.
     let barButtonItemAppearance = UIBarButtonItemAppearance(style: .plain)
-    barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
-    barButtonItemAppearance.disabled.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
+    barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)]
+    barButtonItemAppearance.disabled.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)]
     barButtonItemAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.label]
-    barButtonItemAppearance.focused.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)!]
+    barButtonItemAppearance.focused.titleTextAttributes = [.foregroundColor: UIColor.appColor(.lightBlu)]
     customNavBarAppearance.buttonAppearance = barButtonItemAppearance
     customNavBarAppearance.backButtonAppearance = barButtonItemAppearance
     customNavBarAppearance.doneButtonAppearance = barButtonItemAppearance
